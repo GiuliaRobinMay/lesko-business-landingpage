@@ -173,7 +173,7 @@
   .hero {
     position: relative;
     padding: 64px 0 56px;
-    overflow: hidden;
+    overflow: clip;
   }
   .hero::before {
     content: '?';
@@ -538,10 +538,11 @@
   .problem-list .num {
     font-family: 'Fraunces', serif;
     font-style: italic;
-    font-size: 14px;
+    font-size: 32px;
+    line-height: 1;
     color: var(--red);
-    min-width: 24px;
-    padding-top: 2px;
+    min-width: 58px;
+    padding-top: 0;
     font-weight: 600;
   }
   .problem-list .text {
@@ -552,7 +553,7 @@
   .problem-list .text strong { color: var(--ink); font-weight: 600; }
 
   /* GUIDE */
-  .guide { background: var(--blue); color: var(--paper); position: relative; overflow: hidden; }
+  .guide { background: var(--blue); color: var(--paper); position: relative; overflow: clip; }
   .guide::before {
     content: '';
     position: absolute;
@@ -689,6 +690,14 @@
     max-width: 600px;
     line-height: 1.6;
   }
+  .plan-video {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 48px;
+    box-shadow: 0 16px 40px rgba(14,26,43,0.08);
+  }
+  .plan-video video { width: 100%; display: block; }
   .plan-steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -943,7 +952,7 @@
   .who-col li:last-child { border-bottom: none; }
 
   /* STORIES */
-  .stories { background: var(--ink); color: var(--paper); position: relative; overflow: hidden; }
+  .stories { background: var(--ink); color: var(--paper); position: relative; overflow: clip; }
   .stories::before {
     content: '';
     position: absolute;
@@ -1237,7 +1246,7 @@
     text-align: center;
     padding: 130px 0;
     position: relative;
-    overflow: hidden;
+    overflow: clip;
   }
   .final-cta::before {
     content: '?';
@@ -1292,6 +1301,14 @@
     background: var(--paper);
     color: var(--ink);
   }
+  .cta-video {
+    max-width: 620px;
+    margin: 44px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  }
+  .cta-video video { width: 100%; display: block; }
   .final-cta .small {
     font-size: 13px;
     color: rgba(250,246,236,0.75);
@@ -1393,6 +1410,7 @@
     transform: rotate(-1.5deg);
   }
   .hero-illustration svg { width: 100%; height: 100%; display: block; }
+  .hero-illustration video { width: 100%; height: 100%; display: block; object-fit: cover; }
 
   .svg-fill { width: 100%; height: 100%; }
   .svg-fill svg { width: 100%; height: 100%; display: block; }
@@ -1429,7 +1447,9 @@
       <div class="hero-text reveal">
         <span class="label">For anyone starting or growing a business or nonprofit</span>
         <h1 class="display">
-          You started something <em>real.</em>
+          You started
+          <br>
+          <em>something real.</em>
           <br>
           The funding for it <span class="highlight">already exists.</span>
         </h1>
@@ -1462,65 +1482,7 @@
           <div class="value">12<em>+</em></div>
         </div>
         <div class="hero-illustration">
-          <svg viewBox="0 0 560 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;">
-  <defs>
-    <filter id="cardShadow" x="-20%" y="-10%" width="140%" height="130%">
-      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000" flood-opacity="0.18"/>
-    </filter>
-  </defs>
-  <rect width="560" height="700" rx="12" fill="#2c3fa0"/>
-  <g opacity="0.18" font-family="Georgia, serif" font-style="italic" font-weight="700">
-    <text x="20" y="140" font-size="120" fill="#fdc830">?</text>
-    <text x="450" y="100" font-size="80" fill="#ffffff">&#9829;</text>
-    <text x="40" y="660" font-size="90" fill="#ffffff">&#9827;</text>
-    <text x="475" y="630" font-size="70" fill="#fdc830">&#9830;</text>
-  </g>
-  <g transform="translate(60, 110)" filter="url(#cardShadow)">
-    <rect width="440" height="480" rx="14" fill="#faf6ec"/>
-    <text x="32" y="46" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#586577" letter-spacing="2.5">YOUR MATCH REPORT</text>
-    <circle cx="392" cy="42" r="22" fill="#fdc830"/>
-    <text x="392" y="51" font-family="Georgia, serif" font-size="24" font-weight="700" font-style="italic" fill="#0e1a2b" text-anchor="middle">?</text>
-    <text x="32" y="92" font-family="Georgia, serif" font-size="30" font-weight="600" fill="#0e1a2b">12 grants matched</text>
-    <text x="32" y="118" font-family="DM Sans, sans-serif" font-size="14" fill="#586577">For Maya · freelance designer · NYC</text>
-    <line x1="32" y1="148" x2="408" y2="148" stroke="#e6dfca" stroke-width="1"/>
-    <g transform="translate(32, 178)">
-      <text x="0" y="14" font-family="Georgia, serif" font-size="22" fill="#2c3fa0">&#9824;</text>
-      <text x="34" y="6" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#0e1a2b">NEA Creative Grant</text>
-      <text x="34" y="24" font-family="DM Sans, sans-serif" font-size="11" fill="#586577">National Endowment &#183; $5K&#8211;$25K</text>
-      <rect x="270" y="-2" width="92" height="6" rx="3" fill="#e6dfca"/>
-      <rect x="270" y="-2" width="85" height="6" rx="3" fill="#4fa84f"/>
-      <text x="376" y="3" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#4fa84f">92%</text>
-    </g>
-    <g transform="translate(32, 234)">
-      <text x="0" y="14" font-family="Georgia, serif" font-size="22" fill="#e63946">&#9829;</text>
-      <text x="34" y="6" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#0e1a2b">NYC Small Business Fund</text>
-      <text x="34" y="24" font-family="DM Sans, sans-serif" font-size="11" fill="#586577">NYC EDC &#183; equipment up to $10K</text>
-      <rect x="270" y="-2" width="92" height="6" rx="3" fill="#e6dfca"/>
-      <rect x="270" y="-2" width="78" height="6" rx="3" fill="#4fa84f"/>
-      <text x="376" y="3" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#4fa84f">85%</text>
-    </g>
-    <g transform="translate(32, 290)">
-      <text x="0" y="14" font-family="Georgia, serif" font-size="22" fill="#fdc830">&#9830;</text>
-      <text x="34" y="6" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#0e1a2b">Foundation for Artists Grant</text>
-      <text x="34" y="24" font-family="DM Sans, sans-serif" font-size="11" fill="#586577">Quarterly cycles &#183; $2K&#8211;$15K</text>
-      <rect x="270" y="-2" width="92" height="6" rx="3" fill="#e6dfca"/>
-      <rect x="270" y="-2" width="71" height="6" rx="3" fill="#4fa84f"/>
-      <text x="376" y="3" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#4fa84f">78%</text>
-    </g>
-    <g transform="translate(32, 346)">
-      <text x="0" y="14" font-family="Georgia, serif" font-size="22" fill="#0e1a2b">&#9827;</text>
-      <text x="34" y="6" font-family="DM Sans, sans-serif" font-size="14" font-weight="600" fill="#0e1a2b">Federal Innovation Award</text>
-      <text x="34" y="24" font-family="DM Sans, sans-serif" font-size="11" fill="#586577">SBA &#183; tech innovation track</text>
-      <rect x="270" y="-2" width="92" height="6" rx="3" fill="#e6dfca"/>
-      <rect x="270" y="-2" width="64" height="6" rx="3" fill="#fdc830"/>
-      <text x="376" y="3" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#e0a800">70%</text>
-    </g>
-    <line x1="32" y1="402" x2="408" y2="402" stroke="#e6dfca" stroke-width="1"/>
-    <text x="32" y="434" font-family="DM Sans, sans-serif" font-size="13" fill="#586577">+ 8 more matches in your report</text>
-    <rect x="276" y="416" width="132" height="34" rx="17" fill="#e63946"/>
-    <text x="342" y="438" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" fill="#faf6ec" text-anchor="middle">View all &#8594;</text>
-  </g>
-</svg>
+          <video id="heroScrub" src="assets/hero-scrub.mp4" muted playsinline preload="auto" aria-label="Comic Matthew Lesko comes alive at his laptop as you scroll"></video>
         </div>
       </div>
 
@@ -1777,7 +1739,6 @@
 <!-- ──────────── PRESS MARQUEE ──────────── -->
 <div class="press-bar">
   <div class="press-bar-inner">
-      <span class="press-badge">As seen on</span>
       <span class="press cnn">CNN</span>
       <span class="dot">●</span>
       <span class="press nbc">NBC</span>
@@ -1790,7 +1751,6 @@
       <span class="dot">●</span>
       <span class="press">The Washington Post</span>
       <span class="dot">●</span>
-      <span class="press-badge">As seen on</span>
       <span class="press cnn">CNN</span>
       <span class="dot">●</span>
       <span class="press nbc">NBC</span>
@@ -1817,6 +1777,9 @@
       <p class="plan-intro">
         No 12-week course. No secret system. Just a clear roadmap with a guide, a community, group coaching, resources, and AI tools that do the heavy lookup work for you.
       </p>
+    </div>
+    <div class="plan-video reveal">
+      <video id="roadmapScrub" src="assets/roadmap-scrub.mp4" muted playsinline preload="auto" aria-label="Messy paperwork folds itself into a clear seven step path"></video>
     </div>
     <div class="plan-steps">
       <div class="plan-step reveal">
@@ -2156,20 +2119,19 @@
       <div class="who-col yes">
         <h3>This is for you if</h3>
         <ul>
-          <li>You're a freelancer, indie consultant, or solo operator looking to fund a growth move.</li>
-          <li>You're a small business owner who needs working capital, equipment, or hiring help.</li>
-          <li>You're starting or running a nonprofit and want grant funding without paying a grant writer.</li>
-          <li>You're an early-career professional looking for training grants, scholarships, or career transition funding.</li>
+          <li>You're starting something: a business, a nonprofit, a freelance practice, or an idea that's ready to become real.</li>
+          <li>You're growing and need funding for equipment, hiring, marketing, or a bigger location.</li>
+          <li>You've hit a rough patch: a slow season, a setback, or plain bad luck, and funding would help you bridge it.</li>
+          <li>You run a nonprofit and want grant funding without paying thousands for a grant writer.</li>
           <li>You want to learn this once, properly, with people who've actually won grants.</li>
         </ul>
       </div>
       <div class="who-col no">
         <h3>This is probably not for you if</h3>
         <ul>
-          <li>You want someone to write and submit applications for you (we coach, we don't ghost-write).</li>
-          <li>You're looking for guaranteed money. No community can promise that.</li>
-          <li>You want a one-time PDF and not an ongoing relationship.</li>
-          <li>You're not willing to spend an hour a week showing up.</li>
+          <li>You need someone to write every application for you. We coach you through writing your own, so the skill stays with you for life.</li>
+          <li>You need certain money by next week. Grants take weeks to months, so we help you build a steady pipeline rather than chase a lottery ticket.</li>
+          <li>You're hoping one download will do it. Funding goes to the people who keep showing up, and showing up is exactly what the community makes easy.</li>
         </ul>
       </div>
     </div>
@@ -2372,6 +2334,9 @@
     <p>Join 15,000+ freelancers, founders, and nonprofit builders inside LeskoHelp Pro. Your first AI report is ready as soon as you sign up.</p>
     <a href="#pricing" class="btn-primary">Become a member &nbsp;→</a>
     <p class="small">5 days for $1 · Renews at $19.95/mo · Cancel anytime · Money-back guarantee</p>
+    <div class="cta-video">
+      <video src="assets/welcome-loop.mp4" muted autoplay loop playsinline aria-label="Comic Matthew welcomes you with open arms"></video>
+    </div>
   </div>
 </section>
 
@@ -2431,6 +2396,38 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Scroll-scrub: scrolling drives video playback
+  const scrubs = [];
+  function registerScrub(videoId, driverSel, mode) {
+    const video = document.getElementById(videoId);
+    const driver = document.querySelector(driverSel);
+    if (!video || !driver) return;
+    video.pause();
+    scrubs.push({ video, driver, mode, time: 0 });
+  }
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+  registerScrub('heroScrub', '.hero', 'exit');
+  registerScrub('roadmapScrub', '.plan-video', 'through');
+  (function tick() {
+    const vh = window.innerHeight;
+    for (const s of scrubs) {
+      const d = s.video.duration;
+      if (d) {
+        const r = s.driver.getBoundingClientRect();
+        let p;
+        if (s.mode === 'exit') {
+          p = clamp01(-r.top / Math.max(1, r.height - vh * 0.25));
+        } else {
+          p = clamp01((vh - r.top) / (vh + r.height));
+        }
+        const target = p * d * 0.98;
+        s.time += (target - s.time) * 0.14;
+        if (Math.abs(s.video.currentTime - s.time) > 0.005) s.video.currentTime = s.time;
+      }
+    }
+    requestAnimationFrame(tick);
+  })();
 </script>
 </body>
 </html>
