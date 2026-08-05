@@ -921,52 +921,8 @@
   }
 
   /* Supporting features grid */
-  .support-features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .support-feature {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 28px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .support-feature:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(14,26,43,0.06);
-  }
-  .support-feature .icon {
-    width: 44px; height: 44px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: 22px;
-    background: var(--cream-2);
-    color: var(--ink);
-  }
-  .support-feature.f1 .icon { background: var(--blue); color: var(--yellow); }
-  .support-feature.f2 .icon { background: var(--yellow); color: var(--ink); }
-  .support-feature.f3 .icon { background: var(--red); color: var(--paper); }
-  .support-feature.f4 .icon { background: var(--green); color: var(--paper); }
-  .support-feature h4 {
-    font-size: 18px;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .support-feature p {
-    font-size: 14px;
-    color: var(--ink-mid);
-    line-height: 1.5;
-  }
 
-  /* WHO */
+/* WHO */
   .who { background: var(--paper); }
   .who h2 {
     font-size: clamp(36px, 4.5vw, 56px);
@@ -1478,7 +1434,7 @@
       gap: 48px;
     }
     .hero-portrait { margin: 0 auto; }
-    .plan-steps, .pricing-grid, .who-grid, .lead-features, .support-features {
+    .plan-steps, .pricing-grid, .who-grid, .lead-features {
       grid-template-columns: 1fr;
     }
     .car-track .story-card { flex: 0 0 100%; }
@@ -1494,7 +1450,6 @@
     .guide-creds > div { border-right: none; border-bottom: 1px solid rgba(250,246,236,0.2); padding: 16px 0 !important; }
   }
   @media (max-width: 700px) {
-    .support-features { grid-template-columns: 1fr 1fr; gap: 16px; }
     .lead-features { grid-template-columns: 1fr; }
   }
 
@@ -1993,30 +1948,6 @@
           <h3>Direct access to Matthew</h3>
           <p>Join Matthew Lives, weekly live sessions where you bring your questions and <strong>Matthew answers them on the spot</strong>. Real conversations, not autoresponders.</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Supporting features -->
-    <div class="support-features">
-      <div class="support-feature f1 reveal">
-        <div class="icon">Q</div>
-        <h4>Questions Channel</h4>
-        <p>Post a draft, ask a question, get unstuck. Coaches reply within hours.</p>
-      </div>
-      <div class="support-feature f2 reveal">
-        <div class="icon">7</div>
-        <h4>7-Step Roadmap</h4>
-        <p>A clear path from first search to submitted application. Follow it at your own pace.</p>
-      </div>
-      <div class="support-feature f3 reveal">
-        <div class="icon">R</div>
-        <h4>Resource Library</h4>
-        <p>Hundreds of lessons, templates, and short-form guides, searchable any time.</p>
-      </div>
-      <div class="support-feature f4 reveal">
-        <div class="icon">G</div>
-        <h4>Group Coaching</h4>
-        <p>Live classes every day: welcome tours, beginner classes, and member Q&amp;As.</p>
       </div>
     </div>
   </div>
