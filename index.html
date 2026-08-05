@@ -1093,75 +1093,49 @@
 
   /* Supporting features grid */
 
-/* WHO */
-  .who { background: var(--paper); }
-  .who h2 {
-    font-size: clamp(36px, 4.5vw, 56px);
-    line-height: 1.05;
-    margin-bottom: 56px;
-    max-width: 720px;
-  }
-  .who-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .who-col { padding: 40px; }
-  .who-col.yes { background: var(--cream); border-right: 1px solid var(--line); }
-  .who-col h3 {
-    font-size: 22px;
-    margin-bottom: 24px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .who-col.yes h3::before {
-    content: '✓';
-    width: 32px; height: 32px;
-    background: var(--green);
-    color: var(--paper);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-  }
-  .who-col.no h3::before {
-    content: '×';
-    width: 32px; height: 32px;
-    background: var(--ink-mid);
-    color: var(--paper);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-  }
-  .who-col ul { list-style: none; }
-  .who-sub {
-    font-size: 18px;
-    color: var(--ink-soft);
-    max-width: 560px;
-    margin: -36px 0 48px;
-  }
-  .who-col li {
-    position: relative;
-    padding: 14px 0 14px 26px;
-    border-bottom: 1px solid var(--line-soft);
-    font-size: 15px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-  .who-col li:last-child { border-bottom: none; }
-  .who-col li::before { position: absolute; left: 0; top: 14px; font-size: 14px; }
-  .who-col li:nth-child(4n+1)::before { content: '♠'; color: var(--blue); }
-  .who-col li:nth-child(4n+2)::before { content: '♥'; color: var(--red); }
-  .who-col li:nth-child(4n+3)::before { content: '♦'; color: var(--yellow-warm); }
-  .who-col li:nth-child(4n+4)::before { content: '♣'; color: var(--green); }
+/* PEOPLE WALL */
+  .wall { background: var(--green-deep); }
+  .wall .section-label { color: var(--yellow); }
+  .wall .section-label::before { background: var(--yellow); }
+  .wall h2 { font-size: clamp(36px, 4.5vw, 56px); line-height: 1.05; margin-bottom: 56px; max-width: 720px; color: var(--paper); }
+  .wall h2 em { color: var(--yellow); }
+  .wall-sub { font-size: 18px; color: rgba(250,246,236,0.78); max-width: 560px; margin: -36px 0 48px; }
+  .wall-chips { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 44px; }
+  .wall-chip { display: flex; align-items: center; gap: 12px; background: var(--paper); border-radius: 100px; padding: 10px 22px 10px 12px; box-shadow: 0 6px 18px rgba(14,26,43,0.12); }
+  .wall-chip .s { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; font-size: 17px; flex-shrink: 0; overflow: hidden; }
+  .wall-chip .s img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .wall-chip .t { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.25; }
+  .wall-chip .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); display: block; margin-top: 2px; font-weight: 500; }
+  .wall-chip.hot { background: var(--red); transform: rotate(-1.2deg); box-shadow: 0 14px 34px rgba(14,26,43,0.28); }
+  .wall-chip.hot .t { color: var(--paper); }
+  .wall-chip.hot .tag { color: rgba(250,246,236,0.75); }
+  .wall-close { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; border-top: 1px solid rgba(250,246,236,0.25); padding-top: 36px; }
+  .wall-close .line { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500; max-width: 640px; color: var(--paper); }
+  .wall-close .line em { font-style: italic; color: var(--yellow); }
+  .wall-note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(250,246,236,0.6); margin-top: 8px; }
+  .wall-cta { display: inline-block; background: var(--yellow); color: var(--ink); font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: transform 0.2s; }
+  .wall-cta:hover { transform: translateY(-2px); }
+
+  /* WHY NOW */
+  .whynow { background: var(--paper); }
+  .whynow h2 { font-size: clamp(36px, 4.5vw, 56px); line-height: 1.05; margin-bottom: 56px; max-width: 720px; }
+  .wn-sub { font-size: 18px; color: var(--ink-soft); max-width: 560px; margin: -36px 0 48px; }
+  .wn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+  .wn-card { background: var(--cream); border: 1px solid var(--line); border-radius: 8px; padding: 36px 32px; position: relative; overflow: hidden; }
+  .wn-card .suit { position: absolute; top: 18px; right: 22px; font-family: 'Fraunces', serif; font-style: italic; font-size: 34px; opacity: 0.22; }
+  .wn-num { font-family: 'Fraunces', serif; font-weight: 700; font-size: 54px; line-height: 1; margin-bottom: 14px; }
+  .wn-card:nth-child(1) .wn-num { color: var(--blue); }
+  .wn-card:nth-child(2) .wn-num { color: var(--red); }
+  .wn-card:nth-child(3) .wn-num { color: var(--green); }
+  .wn-kicker { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mid); display: block; margin-bottom: 18px; }
+  .wn-card p { font-size: 15px; color: var(--ink-soft); }
+  .wn-card p strong { color: var(--ink); }
+  .wn-close { display: flex; align-items: center; justify-content: space-between; gap: 32px; background: var(--ink); border-radius: 8px; padding: 32px 40px; flex-wrap: wrap; }
+  .wn-close .line { font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; color: var(--paper); max-width: 560px; }
+  .wn-close .line em { color: var(--yellow); }
+  .wn-note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(250,246,236,0.6); margin-top: 10px; }
+  .wn-cta { display: inline-block; background: var(--yellow); color: var(--ink); font-weight: 700; font-size: 16px; padding: 16px 30px; border-radius: 100px; text-decoration: none; white-space: nowrap; transition: transform 0.2s; }
+  .wn-cta:hover { transform: translateY(-2px); }
 
   /* STORIES */
   .stories { background: var(--ink); color: var(--paper); position: relative; overflow: clip; }
@@ -1599,11 +1573,10 @@
       gap: 48px;
     }
     .hero-portrait { margin: 0 auto; }
-    .plan-steps, .pricing-grid, .who-grid, .lead-features {
+    .plan-steps, .pricing-grid, .wn-grid, .lead-features {
       grid-template-columns: 1fr;
     }
     .stories-track .story-card { width: 300px; }
-    .who-col.yes { border-right: none; border-bottom: 1px solid var(--line); }
     .price-card.featured { transform: none; }
     .nav-links a:not(.nav-cta) { display: none; }
     section { padding: 72px 0; }
@@ -2119,34 +2092,46 @@
 </section>
 
 <!-- ──────────── WHO ──────────── -->
-<section class="who">
+<section class="wall">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Who it's for</span>
-      <h2 class="display">
-        Honest about <em>fit.</em>
-      </h2>
-      <p class="who-sub">Grant seeking is a card game you can learn. Here's how to know if you're holding the right hand.</p>
+      <span class="section-label">People like you</span>
+      <h2 class="display">People like you are <em>already inside.</em></h2>
+      <p class="wall-sub">15,000+ members &#8212; and not one of them was a "grants person" when they started.</p>
     </div>
-    <div class="who-grid reveal">
-      <div class="who-col yes">
-        <h3>Deal me in if</h3>
-        <ul>
-          <li>You're starting something: a business, a nonprofit, a freelance practice, or an idea that's ready to become real.</li>
-          <li>You're growing and need funding for equipment, hiring, marketing, or a bigger location.</li>
-          <li>You've hit a rough patch: a slow season, a setback, or plain bad luck, and funding would help you bridge it.</li>
-          <li>You run a nonprofit and want grant funding without paying thousands for a grant writer.</li>
-          <li>You want to learn this once, properly, with people who've actually won grants.</li>
-        </ul>
-      </div>
-      <div class="who-col no">
-        <h3>Maybe fold for now if</h3>
-        <ul>
-          <li>You need someone to write every application for you. We coach you through writing your own, so the skill stays with you for life.</li>
-          <li>You need certain money by next week. Grants take weeks to months, so we help you build a steady pipeline rather than chase a lottery ticket.</li>
-          <li>You're hoping one download will do it. Funding goes to the people who keep showing up, and showing up is exactly what the community makes easy.</li>
-        </ul>
-      </div>
+    <div class="wall-chips reveal">
+      <div class="wall-chip"><span class="s" style="background:#e6ebf6;color:var(--blue)">&#9824;</span><span><span class="t">The bakery owner</span><span class="tag">local development grant</span></span></div>
+      <div class="wall-chip hot"><span class="s"><img src="assets/face-woman.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span><span><span class="t">The nonprofit founder told "no" nine times</span><span class="tag">first grant approved</span></span></div>
+      <div class="wall-chip"><span class="s"><img src="assets/face-man.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span><span><span class="t">The freelance sound engineer</span><span class="tag">equipment program</span></span></div>
+      <div class="wall-chip"><span class="s" style="background:#e0f2e6;color:var(--green)">&#9827;</span><span><span class="t">The two-man landscaping crew</span><span class="tag">veteran-owned business grant</span></span></div>
+      <div class="wall-chip"><span class="s" style="background:#fdf0e6;color:var(--red)">&#9824;</span><span><span class="t">The rural daycare startup</span><span class="tag">state childcare fund</span></span></div>
+      <div class="wall-chip"><span class="s" style="background:#e6ebf6;color:var(--blue)">&#9829;</span><span><span class="t">The food-truck couple</span><span class="tag">small business innovation</span></span></div>
+      <div class="wall-chip"><span class="s" style="background:#e0f2e6;color:var(--green)">&#9830;</span><span><span class="t">The after-school tutor</span><span class="tag">education access grant</span></span></div>
+      <div class="wall-chip"><span class="s" style="background:#fff5d6;color:var(--yellow-warm)">&#9827;</span><span><span class="t">The one-person film studio</span><span class="tag">arts &amp; media funding</span></span></div>
+    </div>
+    <div class="wall-close reveal">
+      <div class="line">If you recognized yourself on this wall, <em>this was built for you.</em><div class="wall-note">Join 15,000+ members &#183; $1 five-day trial &#183; 30-day guarantee</div></div>
+      <a class="wall-cta" href="#pricing">Take your seat &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────── WHY NOW ──────────── -->
+<section class="whynow">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Why now</span>
+      <h2 class="display">The money doesn't wait.<br><em>Neither should you.</em></h2>
+      <p class="wn-sub">Grant programs run on windows and deadlines. The only people who miss out are the ones still "thinking about it" when the window closes.</p>
+    </div>
+    <div class="wn-grid reveal">
+      <div class="wn-card"><span class="suit" style="color:var(--blue)">&#9824;</span><span class="wn-kicker">On the table in 2026</span><div class="wn-num">$4.96T</div><p>In U.S. grants &amp; programs &#8212; federal, state, local, and foundation money that <strong>must be given out</strong>.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--red)">&#9829;</span><span class="wn-kicker">Closing constantly</span><div class="wn-num">Every week</div><p>Application windows open and close. <strong>Miss one, wait a year.</strong> Members see deadlines before they pass.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--green)">&#9827;</span><span class="wn-kicker">Cost to apply</span><div class="wn-num">$0</div><p>Most programs cost <strong>nothing to apply</strong>. The price of a grant isn't money &#8212; it's knowing where to look.</p></div>
+    </div>
+    <div class="wn-close reveal">
+      <div class="line">Funding goes to whoever shows up. <em>This is how you show up.</em><div class="wn-note">5-day trial &#183; renews $19.95/mo &#183; 30-day money-back guarantee</div></div>
+      <a class="wn-cta" href="#pricing">Start your $1 trial &#8594;</a>
     </div>
   </div>
 </section>
