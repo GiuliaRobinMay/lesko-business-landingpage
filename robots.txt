@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# AI search & assistant crawlers — welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Aggressive scraper — blocked
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://leskohelp.com/sitemap.xml
