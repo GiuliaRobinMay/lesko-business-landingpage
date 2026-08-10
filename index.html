@@ -1317,134 +1317,45 @@
     max-width: 580px;
     margin: 0 auto;
   }
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr 1fr;
-    gap: 24px;
-    align-items: stretch;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; align-items: stretch; }
   .price-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 36px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    background: #ffffff;
+    border: 2px solid #2f2f2f;
+    padding: 12px 14px 26px;
+    text-align: center;
+    display: flex; flex-direction: column;
+    color: #2f2f2f;
   }
-  .price-card.featured {
-    background: var(--blue);
-    color: var(--paper);
-    border-color: var(--blue);
-    transform: scale(1.04);
-    box-shadow: 0 24px 60px rgba(44,63,160,0.3);
+  .price-card.featured { border: 4px solid #2FD24C; }
+  .pc-banner {
+    color: #fff; font-weight: 800; font-size: 21px;
+    padding: 9px 8px; margin-bottom: 4px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.22);
   }
-  .price-badge {
-    position: absolute;
-    white-space: nowrap;
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--yellow);
-    color: var(--ink);
-    padding: 8px 18px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-radius: 100px;
-    font-weight: 700;
-    border: 2px solid var(--ink);
-  }
-  .price-card .tier-name {
-    font-family: 'Fraunces', serif;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .price-card .tier-desc {
-    font-size: 14px;
-    color: var(--ink-mid);
-    margin-bottom: 28px;
-    min-height: 42px;
-    line-height: 1.5;
-  }
-  .price-card.featured .tier-desc { color: rgba(250,246,236,0.7); }
-  .price-display {
-    margin-bottom: 28px;
-    padding-bottom: 28px;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .price-card.featured .price-display { border-color: rgba(250,246,236,0.2); }
-  .price-amount {
-    font-family: 'Fraunces', serif;
-    font-size: 56px;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-  .price-amount sub {
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--ink-mid);
-    margin-left: 4px;
-  }
-  .price-card.featured .price-amount sub { color: rgba(250,246,236,0.7); }
-  .price-period {
-    font-size: 13px;
-    color: var(--ink-mid);
-    margin-top: 4px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .price-card.featured .price-period { color: rgba(250,246,236,0.6); }
-  .price-card.contact .price-amount { font-size: 36px; font-style: italic; }
-  .price-features { list-style: none; flex: 1; margin-bottom: 32px; }
-  .price-features li {
-    padding: 10px 0;
-    font-size: 14px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    line-height: 1.5;
-  }
-  .price-features li::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--red);
-    margin-top: 8px;
-    flex-shrink: 0;
-  }
-  .price-card.featured .price-features li::before { background: var(--yellow); }
-  .price-cta {
+  .pc-banner.green { background: #2FD24C; }
+  .pc-banner.dark { background: #3F3F3F; }
+  .pc-title { font-size: 34px; font-weight: 700; padding: 14px 0 12px; }
+  .pc-title.pad-top { padding-top: 64px; }
+  .pc-rule { border-top: 2px solid #2f2f2f; margin: 0 8px 12px; }
+  .pc-comic { width: 58%; max-width: 215px; height: auto; margin: 10px auto 4px; display: block; }
+  .pc-strike { font-size: 22px; font-weight: 600; color: #8a8a8a; text-decoration: line-through; margin-top: 4px; }
+  .pc-price { font-size: 58px; font-weight: 800; line-height: 1.05; letter-spacing: -0.01em; }
+  .pc-per { font-size: 27px; font-weight: 700; margin-top: 2px; }
+  .pc-note { font-size: 18px; color: #5b5b5b; margin-top: 8px; }
+  .pc-bill { font-size: 13px; color: #6b6b6b; margin: 10px 0 18px; }
+  .pc-cart {
     display: block;
-    text-align: center;
-    padding: 14px 24px;
-    border-radius: 100px;
+    background: #F5A83C; color: #4a4a4a;
+    font-weight: 800; font-size: 25px;
+    border: 1px solid #D68910; border-bottom: 3px solid #C87F0A;
+    border-radius: 7px;
+    padding: 14px 10px; margin: auto 16px 0;
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    transition: all 0.2s;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    transition: filter 0.15s;
   }
-  .price-cta.primary { background: var(--red); color: var(--paper); }
-  .price-cta.primary:hover { background: var(--red-deep); }
-  .price-cta.featured-cta { background: var(--yellow); color: var(--ink); }
-  .price-cta.featured-cta:hover { background: var(--yellow-warm); }
-  .price-cta.outline {
-    background: transparent;
-    color: var(--ink);
-    border: 2px solid var(--ink);
-  }
-  .price-cta.outline:hover { background: var(--ink); color: var(--paper); }
-  .pricing-foot {
-    text-align: center;
-    margin-top: 48px;
-    font-size: 14px;
-    color: var(--ink-mid);
-  }
-  .pricing-foot strong { color: var(--ink); }
+  .pc-cart:hover { filter: brightness(1.06); }
+  .pc-mbg { font-size: 15px; color: #5b5b5b; margin-top: 14px; }
 
   /* FAQ */
   .faq { background: var(--paper); }
@@ -1619,7 +1530,6 @@
     .plan-steps, .pricing-grid, .wn-grid, .lead-features {
       grid-template-columns: 1fr;
     }
-    .price-card.featured { transform: none; }
     .nav-links a:not(.nav-cta) { display: none; }
     section { padding: 72px 0; }
     .container { padding: 0 24px; }
@@ -2355,62 +2265,50 @@
     <div class="pricing-grid">
       <!-- 1 MONTH (FEATURED · JULY OFFER) -->
       <div class="price-card featured reveal">
-        <div class="price-badge">July offer · 5 days for $1</div>
-        <div class="tier-name">1 Month</div>
-        <div class="tier-desc">Start with a 5-day trial for $1. Full member access from day one.</div>
-        <div class="price-display">
-          <div class="price-amount">$1</div>
-          <div class="price-period">5-day trial · renews at $19.95/mo</div>
-        </div>
-        <ul class="price-features">
-          <li>Daily group coaching classes</li>
-          <li>Personalized AI grant reports</li>
-          <li>The Lesko AI researcher</li>
-          <li>Matthew Lives Q&amp;A sessions</li>
-          <li>Questions Channel</li>
-          <li>7-step roadmap</li>
-          <li>Full resource library</li>
-        </ul>
-        <a href="https://www.leskohelp.com/business-trial" target="_blank" rel="noopener" class="price-cta featured-cta">Start your $1 trial</a>
+        <div class="pc-banner green">JULY OFFER!</div>
+        <div class="pc-title">1 Month</div>
+        <div class="pc-rule"></div>
+        <div class="pc-banner green">5 DAYS FOR $1!</div>
+        <img class="pc-comic" src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <div class="pc-strike">$19.95/mo</div>
+        <div class="pc-price">ONLY $1</div>
+        <div class="pc-per">For 5 Day Trial</div>
+        <div class="pc-note">(Renews @ $19.95)</div>
+        <div class="pc-bill">Billed Monthly After Trial&nbsp;|&nbsp;Cancel Anytime</div>
+        <a href="https://www.leskohelp.com/business-trial" target="_blank" rel="noopener" class="pc-cart">Add To Cart!</a>
+        <div class="pc-mbg">Money-Back Guarantee</div>
       </div>
 
       <!-- 6 MONTHS -->
       <div class="price-card reveal">
-        <div class="tier-name">6 Months</div>
-        <div class="tier-desc">Commit to a season of applications and save while you do it.</div>
-        <div class="price-display">
-          <div class="price-amount">$14.99<sub>/mo</sub></div>
-          <div class="price-period">$89.95 billed semi-annually</div>
-        </div>
-        <ul class="price-features">
-          <li>Everything in the 1-month plan</li>
-          <li>Save $29.75 vs. paying monthly</li>
-          <li>Locked-in pricing for 6 months</li>
-          <li>Cancel anytime</li>
-        </ul>
-        <a href="https://www.leskohelp.com/business-half-year" target="_blank" rel="noopener" class="price-cta primary">Choose 6 months</a>
+        <div class="pc-title pad-top">6 Months</div>
+        <div class="pc-rule"></div>
+        <div class="pc-banner dark">SAVE $29.75!</div>
+        <img class="pc-comic" src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <div class="pc-price">$14.99</div>
+        <div class="pc-per">Per Month</div>
+        <div class="pc-note">($89.95 Total)</div>
+        <div class="pc-bill">Billed Semi-Annually&nbsp;|&nbsp;Cancel Anytime</div>
+        <a href="https://www.leskohelp.com/business-half-year" target="_blank" rel="noopener" class="pc-cart">Add To Cart!</a>
+        <div class="pc-mbg">Money-Back Guarantee</div>
       </div>
 
       <!-- 12 MONTHS -->
       <div class="price-card reveal">
-        <div class="tier-name">12 Months</div>
-        <div class="tier-desc">4 months free. For the people in it for the long haul.</div>
-        <div class="price-display">
-          <div class="price-amount">$12.49<sub>/mo</sub></div>
-          <div class="price-period">$149.95 billed yearly</div>
-        </div>
-        <ul class="price-features">
-          <li>Everything in the 1-month plan</li>
-          <li>4 months free, save $89.45</li>
-          <li>Locked-in pricing for 12 months</li>
-          <li>Cancel anytime</li>
-        </ul>
-        <a href="https://www.leskohelp.com/business-yearly" target="_blank" rel="noopener" class="price-cta outline">Choose 12 months</a>
+        <div class="pc-banner dark">4 MONTHS FREE!</div>
+        <div class="pc-title">12 Months</div>
+        <div class="pc-rule"></div>
+        <div class="pc-banner dark">SAVE $89.45!</div>
+        <img class="pc-comic" src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <div class="pc-price">$12.49</div>
+        <div class="pc-per">Per Month</div>
+        <div class="pc-note">($149.95 Total)</div>
+        <div class="pc-bill">Billed Yearly&nbsp;|&nbsp;Cancel Anytime</div>
+        <a href="https://www.leskohelp.com/business-yearly" target="_blank" rel="noopener" class="pc-cart">Add To Cart!</a>
+        <div class="pc-mbg">Money-Back Guarantee</div>
       </div>
     </div>
-    <div class="pricing-foot">
-      Every plan comes with a <strong>money-back guarantee</strong>. No setup fees. Cancel from your account at any time.
-    </div>
+
   </div>
 </section>
 
