@@ -1100,7 +1100,7 @@
   .wall h2 { font-size: clamp(36px, 4.5vw, 56px); line-height: 1.05; margin-bottom: 56px; max-width: 720px; color: var(--paper); }
   .wall h2 em { color: var(--yellow); }
   .wall-sub { font-size: 18px; color: rgba(250,246,236,0.78); max-width: 560px; margin: -36px 0 48px; }
-  .wall-chips { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+  .wall-chips { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 44px; }
   .wall-chip {
     display: flex; align-items: center; gap: 14px;
     background: var(--paper); border: none; border-radius: 100px;
@@ -1112,41 +1112,44 @@
   .wall-chip:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(14,26,43,0.18); }
   .wall-chip .s {
     width: 48px; height: 48px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; font-size: 20px;
     flex-shrink: 0; overflow: hidden;
   }
   .wall-chip .s img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .wall-chip .t { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.25; display: block; }
   .wall-chip .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); display: block; margin-top: 3px; font-weight: 500; }
-  .wall-chip.active { background: var(--red); transform: rotate(-1.2deg); box-shadow: 0 14px 34px rgba(14,26,43,0.28); animation: chipwiggle 0.5s ease; }
-  .wall-chip.active:hover { transform: rotate(-1.2deg); }
-  .wall-chip.active .t { color: var(--paper); }
+  .wall-chip .chip-story { display: none; }
+  .wall-chip.active {
+    width: 100%; flex-wrap: wrap;
+    border-radius: 20px; background: var(--red);
+    padding: 26px 32px;
+    box-shadow: 0 18px 44px rgba(14,26,43,0.3);
+    animation: chipwiggle 0.55s ease;
+    cursor: default;
+  }
+  .wall-chip.active:hover { transform: none; }
+  .wall-chip.active .s { width: 64px; height: 64px; }
+  .wall-chip.active .t { color: var(--paper); font-size: 20px; }
   .wall-chip.active .tag { color: rgba(250,246,236,0.75); }
+  .wall-chip.active .chip-story {
+    display: block; width: 100%; margin-top: 18px;
+    font-size: 17px; line-height: 1.65; font-weight: 400;
+    color: rgba(250,246,236,0.94);
+    max-width: 900px;
+    animation: storyIn 0.4s ease;
+  }
+  .chip-story strong {
+    display: block; font-family: 'Fraunces', serif;
+    font-size: 18px; font-weight: 600; color: var(--paper);
+    margin-bottom: 6px;
+  }
+  @keyframes storyIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes chipwiggle {
-    0% { transform: rotate(0deg) scale(1); }
-    20% { transform: rotate(-3.5deg) scale(1.04); }
-    40% { transform: rotate(2.6deg) scale(1.04); }
-    60% { transform: rotate(-2deg) scale(1.02); }
-    80% { transform: rotate(1.2deg) scale(1.01); }
-    100% { transform: rotate(-1.2deg) scale(1); }
-  }
-  .wall-story { background: var(--paper); border-radius: 8px; padding: 40px 44px; margin-bottom: 44px; box-shadow: 0 16px 40px rgba(14,26,43,0.18); }
-  .wall-story-inner { display: flex; gap: 28px; align-items: flex-start; }
-  .wall-story-inner.swap { animation: wsIn 0.35s ease; }
-  @keyframes wsIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .ws-avatar {
-    width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; font-size: 30px;
-  }
-  .ws-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ws-name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-  .ws-outcome { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
-  .ws-text { font-size: 17.5px; line-height: 1.6; color: var(--ink-soft); max-width: 760px; }
-  @media (max-width: 640px) {
-    .wall-story { padding: 28px; }
-    .wall-story-inner { flex-direction: column; gap: 18px; }
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(-1.6deg); }
+    40% { transform: rotate(1.2deg); }
+    60% { transform: rotate(-0.8deg); }
+    80% { transform: rotate(0.4deg); }
+    100% { transform: rotate(0deg); }
   }
   .wall-close { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; border-top: 1px solid rgba(250,246,236,0.25); padding-top: 36px; }
   .wall-close .line { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 500; max-width: 640px; color: var(--paper); }
@@ -2139,24 +2142,36 @@
       <p class="wall-sub">15,000+ members &#8212; and not one of them was a "grants person" when they started.</p>
     </div>
     <div class="wall-chips reveal">
-      <button class="wall-chip active" data-story="0" type="button"><span class="s"><img src="assets/face-woman.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span><span><span class="t">The nonprofit founder who almost gave up</span><span class="tag">first grant approved</span></span></button>
-      <button class="wall-chip" data-story="1" type="button"><span class="s"><img src="assets/face-man.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span><span><span class="t">The freelance sound engineer</span><span class="tag">equipment program</span></span></button>
-      <button class="wall-chip" data-story="2" type="button"><span class="s" style="background:#fff5d6;color:var(--yellow-warm)">&#9830;</span><span><span class="t">The bakery owner with one free hour a day</span><span class="tag">local development grant</span></span></button>
-      <button class="wall-chip" data-story="3" type="button"><span class="s" style="background:#e0f2e6;color:var(--green)">&#9827;</span><span><span class="t">The two-man veteran landscaping crew</span><span class="tag">veteran-owned business grant</span></span></button>
-      <button class="wall-chip" data-story="4" type="button"><span class="s" style="background:#e6ebf6;color:var(--blue)">&#9824;</span><span><span class="t">The founder who kept second-guessing</span><span class="tag">submitted &amp; approved</span></span></button>
-      <button class="wall-chip" data-story="5" type="button"><span class="s" style="background:#fdf0e6;color:var(--red)">&#9829;</span><span><span class="t">The retired teacher turned tutor</span><span class="tag">education access grant</span></span></button>
-      <button class="wall-chip" data-story="6" type="button"><span class="s" style="background:#e6ebf6;color:var(--blue)">&#9829;</span><span><span class="t">The food-truck couple</span><span class="tag">county innovation fund</span></span></button>
-      <button class="wall-chip" data-story="7" type="button"><span class="s" style="background:#fff5d6;color:var(--yellow-warm)">&#9827;</span><span><span class="t">The one-person film studio</span><span class="tag">state arts council grant</span></span></button>
-    </div>
-    <div class="wall-story reveal">
-      <div class="wall-story-inner" id="wallStoryInner">
-        <span class="ws-avatar" id="wsAvatar"></span>
-        <div>
-          <div class="ws-name" id="wsName"></div>
-          <div class="ws-outcome" id="wsOutcome"></div>
-          <p class="ws-text" id="wsText"></p>
-        </div>
-      </div>
+      <button class="wall-chip active" type="button">
+        <span class="s"><img src="assets/face-woman.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span>
+        <span><span class="t">The nonprofit founder who almost gave up</span><span class="tag">first grant approved</span></span>
+        <span class="chip-story"><strong>Renée M. · Nonprofit Director</strong>I run a small community-arts nonprofit. For two years I circled grant applications and never sent one, because I was sure I'd do it wrong and waste everyone's time. The coaching changed the order of things: first a shortlist of three state programs I actually qualified for, then one application, done with feedback at every step. It was approved last month. I cried a little, then I started the second one.</span>
+      </button>
+      <button class="wall-chip" type="button">
+        <span class="s"><img src="assets/face-man.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span>
+        <span><span class="t">The freelance sound engineer</span><span class="tag">equipment program</span></span>
+        <span class="chip-story"><strong>Marcus T. · Freelance Sound Engineer</strong>I genuinely thought grants were for other people — nonprofits, scientists, someone with a board and a letterhead. My AI report turned up a state small-business equipment program I had never heard of, three miles of paperwork shorter than I feared. I asked two questions in the Questions Channel, got answers the same afternoon, and applied that week. The studio gear I'd been postponing for two years is sitting in my room now.</span>
+      </button>
+      <button class="wall-chip" type="button">
+        <span class="s"><img src="assets/face-elena.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span>
+        <span><span class="t">The bakery owner with one free hour a day</span><span class="tag">local development grant</span></span>
+        <span class="chip-story"><strong>Elena R. · Bakery Owner</strong>Between orders I have maybe one free hour a day, usually at night. I never attended a single live class — I watched the replays with my feet up and posted my questions in the channel. The coaches kept pointing me back to one local development grant instead of ten scattered ones. It came through this spring, and it's paying for the display fridge my customers have been squeezing past for years.</span>
+      </button>
+      <button class="wall-chip" type="button">
+        <span class="s"><img src="assets/face-priya.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span>
+        <span><span class="t">The founder who kept second-guessing</span><span class="tag">submitted &amp; approved</span></span>
+        <span class="chip-story"><strong>Priya S. · Founder, B-corp startup</strong>My problem was never research — I had a spreadsheet that would frighten an accountant. My problem was pressing send. I brought my application to the Thursday Drop-In Clinic and Tony went through it with me line by line, live. Submitted it that Friday. Six weeks later it was approved, and I still think about how long I would have sat on it alone.</span>
+      </button>
+      <button class="wall-chip" type="button">
+        <span class="s"><img src="assets/face-danielle.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span>
+        <span><span class="t">The Army veteran with a two-woman repair crew</span><span class="tag">veteran-owned business grant</span></span>
+        <span class="chip-story"><strong>Danielle W. · Army Veteran, Home-Repair Business</strong>After the Army I started a small home-repair business with my cousin — two women, one van, a lot of word of mouth. I assumed grant money was for tech companies, not for us. My report flagged a veteran-owned business program in the first five minutes, and a coach helped me get the eligibility paperwork right the first time. We got approved for tools and our certification before the busy season.</span>
+      </button>
+      <button class="wall-chip" type="button">
+        <span class="s"><img src="assets/face-jess.webp" alt="" width="160" height="160" loading="lazy" decoding="async"></span>
+        <span><span class="t">The one-person film studio</span><span class="tag">state arts council grant</span></span>
+        <span class="chip-story"><strong>Jess K. · One-Person Film Studio</strong>I assumed arts funding went to institutions with marble lobbies, not to one person editing in a spare bedroom. I asked the AI researcher a plain question — 'what exists for solo filmmakers in my state' — and it came back with a state arts council program and a media fund I'd never seen in years of googling. The council grant landed. It bought a camera and, more importantly, a year of taking myself seriously.</span>
+      </button>
     </div>
     <div class="wall-close reveal">
       <div class="line">If you recognized yourself on this wall, <em>this was built for you.</em><div class="wall-note">Join 15,000+ members &#183; $1 five-day trial &#183; 30-day guarantee</div></div>
@@ -2717,45 +2732,13 @@
 
 <script>
 (function () {
-  const stories = [
-    { name: "Ren\u00e9e M. \u00b7 Nonprofit Director", outcome: "First grant approved", avatar: "assets/face-woman.webp",
-      text: "I run a small community-arts nonprofit. For two years I circled grant applications and never sent one, because I was sure I'd do it wrong and waste everyone's time. The coaching changed the order of things: first a shortlist of three state programs I actually qualified for, then one application, done with feedback at every step. It was approved last month. I cried a little, then I started the second one." },
-    { name: "Marcus T. \u00b7 Freelance Sound Engineer", outcome: "Studio equipment funded", avatar: "assets/face-man.webp",
-      text: "I genuinely thought grants were for other people \u2014 nonprofits, scientists, someone with a board and a letterhead. My AI report turned up a state small-business equipment program I had never heard of, three miles of paperwork shorter than I feared. I asked two questions in the Questions Channel, got answers the same afternoon, and applied that week. The studio gear I'd been postponing for two years is sitting in my room now." },
-    { name: "Elena R. \u00b7 Bakery Owner", outcome: "Local development grant won", avatar: null, suit: "\u2666", suitBg: "#fff5d6", suitColor: "var(--yellow-warm)",
-      text: "Between orders I have maybe one free hour a day, usually at night. I never attended a single live class \u2014 I watched the replays with my feet up and posted my questions in the channel. The coaches kept pointing me back to one local development grant instead of ten scattered ones. It came through this spring, and it's paying for the display fridge my customers have been squeezing past for years." },
-    { name: "Darnell W. \u00b7 Veteran Business Owner", outcome: "Veteran-owned business grant", avatar: null, suit: "\u2663", suitBg: "#e0f2e6", suitColor: "var(--green)",
-      text: "It's me and one other guy, two mowers and a trailer \u2014 I figured grant money was for tech startups. Turns out there are programs specifically for veteran-owned businesses like ours, and my report flagged one in the first five minutes. A coach walked me through the eligibility paperwork so I got it right the first time instead of learning by rejection. We got approved for new equipment before the busy season." },
-    { name: "Priya S. \u00b7 Founder, B-corp startup", outcome: "Submitted Friday, approved in 6 weeks", avatar: null, suit: "\u2660", suitBg: "#e6ebf6", suitColor: "var(--blue)",
-      text: "My problem was never research \u2014 I had a spreadsheet that would frighten an accountant. My problem was pressing send. I brought my application to the Thursday Drop-In Clinic and Tony went through it with me line by line, live. Submitted it that Friday. Six weeks later it was approved, and I still think about how long I would have sat on it alone." },
-    { name: "Gloria H. \u00b7 Retired Teacher, Tutoring Founder", outcome: "Education access grant", avatar: null, suit: "\u2665", suitBg: "#fdf0e6", suitColor: "var(--red)",
-      text: "I'm 61 and I had never applied for anything more official than a library card. After thirty years of teaching I wanted to build a small after-school tutoring room, and everyone said 'there are grants for that' but nobody said where. The Welcome Class on my first day showed me exactly where to start. My education access grant bought the desks, the books, and the good whiteboard." },
-    { name: "Sam & Rosa V. \u00b7 Food-Truck Owners", outcome: "County innovation fund, second try", avatar: null, suit: "\u2665", suitBg: "#e6ebf6", suitColor: "var(--blue)",
-      text: "Our first application was rejected, and honestly we almost stopped there. The coaches told us a first no is normal \u2014 half the game is applying again with better aim. The second one, a county small-business innovation fund, came through. It paid for the second serving window and a fridge that doesn't sound like a helicopter." },
-    { name: "Jess K. \u00b7 One-Person Film Studio", outcome: "State arts council grant", avatar: null, suit: "\u2663", suitBg: "#fff5d6", suitColor: "var(--yellow-warm)",
-      text: "I assumed arts funding went to institutions with marble lobbies, not to one person editing in a spare bedroom. I asked the AI researcher a plain question \u2014 'what exists for solo filmmakers in my state' \u2014 and it came back with a state arts council program and a media fund I'd never seen in years of googling. The council grant landed. It bought a camera and, more importantly, a year of taking myself seriously." }
-  ];
   const chips = document.querySelectorAll('.wall-chip');
-  if (!chips.length) return;
-  const inner = document.getElementById('wallStoryInner');
-  const av = document.getElementById('wsAvatar');
-  function render(i) {
-    const s = stories[i];
-    if (s.avatar) { av.innerHTML = '<img src="' + s.avatar + '" alt="">'; av.style.background = 'none'; }
-    else { av.textContent = s.suit; av.style.background = s.suitBg; av.style.color = s.suitColor; }
-    document.getElementById('wsName').textContent = s.name;
-    document.getElementById('wsOutcome').textContent = s.outcome;
-    document.getElementById('wsText').textContent = s.text;
-    inner.classList.remove('swap'); void inner.offsetWidth; inner.classList.add('swap');
-  }
   chips.forEach(chip => chip.addEventListener('click', () => {
-    const i = +chip.dataset.story;
+    if (chip.classList.contains('active')) { chip.classList.remove('active'); return; }
     chips.forEach(c => c.classList.remove('active'));
     void chip.offsetWidth;
     chip.classList.add('active');
-    render(i);
   }));
-  render(0);
 })();
 </script>
 </body>
