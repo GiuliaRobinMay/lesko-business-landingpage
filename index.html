@@ -1195,18 +1195,6 @@
     );
   }
   .stories .container { position: relative; z-index: 1; }
-  .confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-  .confetti span {
-    position: absolute;
-    top: -24px;
-    border-radius: 2px;
-    opacity: 0.5;
-    animation: confall linear infinite;
-  }
-  @keyframes confall {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(1200px) rotate(540deg); }
-  }
   .stories .section-label { color: var(--yellow); }
   .stories .section-label::before { background: var(--yellow); }
   .stories h2 {
@@ -2214,7 +2202,6 @@
 
 <!-- ──────────── STORIES ──────────── -->
 <section class="stories" id="stories">
-  <div class="confetti" aria-hidden="true"></div>
   <div class="container">
     <div class="reveal">
       <span class="section-label">Member stories</span>
@@ -2581,22 +2568,6 @@
     });
   });
 
-  // Confetti behind the member stories
-  const conf = document.querySelector('.confetti');
-  if (conf) {
-    const colors = ['#fdc830', '#e63946', '#4458bb', '#4fa84f', '#faf6ec'];
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('span');
-      p.style.left = (i * 2.5 + Math.random() * 2) + '%';
-      p.style.background = colors[i % colors.length];
-      p.style.width = (6 + Math.random() * 6) + 'px';
-      p.style.height = (8 + Math.random() * 8) + 'px';
-      p.style.animationDuration = (7 + Math.random() * 7) + 's';
-      p.style.animationDelay = (-Math.random() * 14) + 's';
-      conf.appendChild(p);
-    }
-  }
-
   (function tick() {
     const vh = window.innerHeight;
     for (const s of scrubs) {
@@ -2630,18 +2601,21 @@
   let busy = false;
   function confetti(card) {
     const colors = ['#fdc830', '#4fa84f', '#2c3fa0', '#faf6ec', '#ffb300', '#e63946'];
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 34; i++) {
       const b = document.createElement('span');
       b.className = 'pop-bit';
       b.style.background = colors[i % colors.length];
-      b.style.left = (6 + Math.random() * 88) + '%';
+      b.style.left = (2 + Math.random() * 96) + '%';
+      const s = 6 + Math.random() * 7;
+      b.style.width = s + 'px'; b.style.height = s + 'px';
       card.appendChild(b);
-      const dx = (Math.random() - 0.5) * 170;
-      const dy = -(24 + Math.random() * 110);
+      const dx = (Math.random() - 0.5) * 340;
+      const dy = -(40 + Math.random() * 220);
       b.animate([
         { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-        { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(' + ((Math.random() - 0.5) * 420) + 'deg)', opacity: 0 }
-      ], { duration: 750 + Math.random() * 350, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => b.remove();
+        { transform: 'translate(' + dx * 0.7 + 'px,' + dy + 'px) rotate(' + ((Math.random() - 0.5) * 480) + 'deg)', opacity: 1, offset: 0.6 },
+        { transform: 'translate(' + dx + 'px,' + (dy + 70) + 'px) rotate(' + ((Math.random() - 0.5) * 720) + 'deg)', opacity: 0 }
+      ], { duration: 950 + Math.random() * 500, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => b.remove();
     }
   }
   function mark(burst) {
