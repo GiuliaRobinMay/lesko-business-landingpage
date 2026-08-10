@@ -1337,7 +1337,12 @@
   .pc-title { font-size: 34px; font-weight: 700; padding: 14px 0 12px; }
   .pc-title.pad-top { padding-top: 64px; }
   .pc-rule { border-top: 2px solid #2f2f2f; margin: 0 8px 12px; }
-  .pc-comic { width: 58%; max-width: 215px; height: auto; margin: 10px auto 4px; display: block; }
+  .pc-comic-wrap { position: relative; width: 58%; max-width: 215px; aspect-ratio: 1 / 1; margin: 10px auto 4px; }
+  .pc-comic-wrap img, .pc-comic-wrap .pc-loop {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  .pc-loop { opacity: 0; transition: opacity 0.25s ease; background: #fff; }
+  .pc-loop.playing { opacity: 1; }
   .pc-strike { font-size: 22px; font-weight: 600; color: #8a8a8a; text-decoration: line-through; margin-top: 4px; }
   .pc-price { font-size: 58px; font-weight: 800; line-height: 1.05; letter-spacing: -0.01em; }
   .pc-per { font-size: 27px; font-weight: 700; margin-top: 2px; }
@@ -2269,7 +2274,7 @@
         <div class="pc-title">1 Month</div>
         <div class="pc-rule"></div>
         <div class="pc-banner green">5 DAYS FOR $1!</div>
-        <img class="pc-comic" src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <div class="pc-comic-wrap"><img src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async"><video class="pc-loop" src="assets/welcome-loop.mp4" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video></div>
         <div class="pc-strike">$19.95/mo</div>
         <div class="pc-price">ONLY $1</div>
         <div class="pc-per">For 5 Day Trial</div>
@@ -2284,7 +2289,7 @@
         <div class="pc-title pad-top">6 Months</div>
         <div class="pc-rule"></div>
         <div class="pc-banner dark">SAVE $29.75!</div>
-        <img class="pc-comic" src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <div class="pc-comic-wrap"><img src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async"><video class="pc-loop" src="assets/welcome-loop.mp4" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video></div>
         <div class="pc-price">$14.99</div>
         <div class="pc-per">Per Month</div>
         <div class="pc-note">($89.95 Total)</div>
@@ -2299,7 +2304,7 @@
         <div class="pc-title">12 Months</div>
         <div class="pc-rule"></div>
         <div class="pc-banner dark">SAVE $89.45!</div>
-        <img class="pc-comic" src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async">
+        <div class="pc-comic-wrap"><img src="assets/matthew-comic-yellow.webp" alt="" width="600" height="600" loading="lazy" decoding="async"><video class="pc-loop" src="assets/welcome-loop.mp4" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video></div>
         <div class="pc-price">$12.49</div>
         <div class="pc-per">Per Month</div>
         <div class="pc-note">($149.95 Total)</div>
@@ -2543,6 +2548,17 @@
 })();
 </script>
 <script>
+(function () {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.price-card').forEach(card => {
+    const v = card.querySelector('.pc-loop');
+    if (!v) return;
+    v.addEventListener('playing', () => v.classList.add('playing'));
+    v.addEventListener('pause', () => v.classList.remove('playing'));
+    card.addEventListener('mouseenter', () => { if (!reduce) v.play().catch(() => {}); });
+    card.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+  });
+})();
 (function () {
   const chips = document.querySelectorAll('.wall-chip');
   chips.forEach(chip => chip.addEventListener('click', () => {
