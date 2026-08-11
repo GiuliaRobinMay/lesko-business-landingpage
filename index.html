@@ -41,10 +41,19 @@
    "alternateName": "LeskoHelp Pro",
    "url": "https://leskohelp.com/",
    "logo": "https://leskohelp.com/apple-touch-icon.png",
+   "sameAs": [
+    "https://www.youtube.com/@MatthewLesko",
+    "https://www.instagram.com/thematthewlesko/",
+    "https://www.linkedin.com/in/lesk0/"
+   ],
    "founder": {
     "@type": "Person",
     "name": "Matthew Lesko",
-    "sameAs": "https://en.wikipedia.org/wiki/Matthew_Lesko",
+    "sameAs": [
+     "https://en.wikipedia.org/wiki/Matthew_Lesko",
+     "https://www.youtube.com/@MatthewLesko",
+     "https://www.instagram.com/thematthewlesko/"
+    ],
     "description": "Author and grants researcher known for 50 years of cataloging U.S. government and foundation funding programs."
    }
   },
@@ -1469,6 +1478,87 @@
   }
 
   /* FOOTER */
+  /* ── YouTube banner ─────────────────────────── */
+  .yt { background: var(--ink); color: var(--paper); position: relative; overflow: clip; }
+  .yt::after {
+    content: '?';
+    position: absolute; right: 3%; top: -40px;
+    font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 600;
+    font-size: 360px; line-height: 1; color: var(--yellow); opacity: 0.05;
+    pointer-events: none; user-select: none;
+  }
+  .yt .container { position: relative; z-index: 1; }
+  .yt .section-label { color: var(--yellow); justify-content: center; }
+  .yt .section-label::before { background: var(--yellow); }
+  .yt-head { text-align: center; max-width: 780px; margin: 0 auto 44px; }
+  .yt-head h2 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1.05;
+    margin-bottom: 18px;
+    color: var(--paper);
+  }
+  .yt-head h2 em { color: var(--yellow); }
+  .yt-sub { color: rgba(250,246,236,0.72); font-size: 18px; line-height: 1.65; }
+  .yt-frame {
+    position: relative; max-width: 920px; margin: 0 auto;
+    border-radius: 22px; overflow: hidden; background: #000;
+    border: 3px solid rgba(253,200,48,0.4);
+    box-shadow: 0 34px 90px rgba(0,0,0,0.5);
+  }
+  .yt-frame::before { content: ''; display: block; padding-top: 56.25%; }
+  .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .yt-cta-row { text-align: center; margin-top: 32px; }
+  .btn-youtube {
+    display: inline-flex; align-items: center; gap: 11px;
+    background: var(--red); color: #fff;
+    font-weight: 700; font-size: 16px;
+    padding: 15px 30px; border-radius: 999px; text-decoration: none;
+    box-shadow: 0 12px 30px rgba(230,57,70,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .btn-youtube:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(230,57,70,0.45); }
+  .btn-youtube .play {
+    display: inline-grid; place-items: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; color: var(--red); font-size: 10px;
+  }
+
+  /* ── Lesko Loves AI embed ───────────────────── */
+  .ai { background: var(--paper); border-top: 1px solid var(--line-soft); }
+  .ai-head { text-align: center; max-width: 780px; margin: 0 auto 38px; }
+  .ai-head .section-label { justify-content: center; }
+  .ai-head h2 { font-size: clamp(36px, 4.5vw, 56px); line-height: 1.05; margin-bottom: 18px; }
+  .ai-sub { color: var(--ink-mid); font-size: 18px; line-height: 1.65; }
+  .ai-frame {
+    max-width: 1020px; margin: 0 auto;
+    border-radius: 18px; border: 1px solid var(--line); overflow: hidden;
+    background: #fff; box-shadow: 0 24px 60px rgba(14,26,43,0.12);
+  }
+  .ai-chrome {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 16px; background: var(--cream); border-bottom: 1px solid var(--line);
+  }
+  .ai-dots { display: inline-flex; gap: 6px; flex: none; }
+  .ai-dots i { width: 11px; height: 11px; border-radius: 50%; }
+  .ai-dots i:nth-child(1) { background: var(--red); }
+  .ai-dots i:nth-child(2) { background: var(--yellow); }
+  .ai-dots i:nth-child(3) { background: var(--green); }
+  .ai-url {
+    flex: 1; min-width: 0; background: #fff; border: 1px solid var(--line-soft);
+    border-radius: 999px; padding: 6px 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mid);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .ai-open { font-size: 14px; font-weight: 700; color: var(--blue); text-decoration: none; white-space: nowrap; flex: none; }
+  .ai-open:hover { text-decoration: underline; }
+  .ai-frame iframe { display: block; width: 100%; height: 780px; border: 0; background: #fff; }
+  @media (max-width: 720px) {
+    .ai-frame iframe { height: 620px; }
+    .ai-open span { display: none; }
+    .yt-frame { border-radius: 14px; border-width: 2px; }
+  }
+
+
   footer {
     background: var(--ink);
     color: rgba(250,246,236,0.7);
@@ -1850,6 +1940,27 @@
 </div>
 
 <!-- ──────────── PLAN — 3 STEPS ──────────── -->
+<!-- ──────────── YOUTUBE BANNER ──────────── -->
+<section class="yt" id="youtube">
+  <div class="container">
+    <div class="yt-head reveal">
+      <span class="section-label">Every day on YouTube</span>
+      <h2 class="display">
+        New free-money videos, <em>every single day.</em>
+      </h2>
+      <p class="yt-sub">
+        Matthew's channel is a running masterclass in finding money — real programs, real deadlines, real people getting checks. His newest videos land here automatically. Press play.
+      </p>
+    </div>
+    <div class="yt-frame reveal">
+      <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUwKJZfa7sWV_qKxQnLBUpjA" title="Matthew Lesko on YouTube — latest videos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <div class="yt-cta-row reveal">
+      <a class="btn-youtube" href="https://www.youtube.com/@MatthewLesko" target="_blank" rel="noopener"><span class="play">▶</span> Subscribe on YouTube</a>
+    </div>
+  </div>
+</section>
+
 <section class="plan" id="how">
   <div class="container">
     <div class="plan-header reveal">
@@ -2258,6 +2369,29 @@
 </section>
 
 <!-- ──────────── PRICING ──────────── -->
+<!-- ──────────── LESKO LOVES AI ──────────── -->
+<section class="ai" id="ai-tool">
+  <div class="container">
+    <div class="ai-head reveal">
+      <span class="section-label">Try it free, right now</span>
+      <h2 class="display">
+        Ask Matthew's AI where <em>your money is.</em>
+      </h2>
+      <p class="ai-sub">
+        This is <strong>Lesko Loves AI</strong> — the team's grant-research AI, trained to build funding reports for businesses. Use it right here. Inside the community, members turn reports like this into submitted applications with coaches at their side.
+      </p>
+    </div>
+    <div class="ai-frame reveal">
+      <div class="ai-chrome">
+        <span class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="ai-url">leskolovesai.com/business</span>
+        <a class="ai-open" href="https://www.leskolovesai.com/business" target="_blank" rel="noopener">Open full page<span> ↗</span></a>
+      </div>
+      <iframe loading="lazy" src="https://www.leskolovesai.com/business" title="Lesko Loves AI — free grant report tool for businesses"></iframe>
+    </div>
+  </div>
+</section>
+
 <section class="pricing" id="pricing">
   <div class="container">
     <div class="pricing-header reveal">
@@ -2411,7 +2545,7 @@
           <li><a href="#pricing">Monthly</a></li>
           <li><a href="#pricing">Yearly</a></li>
           <li><a href="#pricing">For companies</a></li>
-          <li><a href="#">Member sign in</a></li>
+          <li><a href="https://www.free.lesko.com/leskohelp-b" target="_blank" rel="noopener">Member sign in</a></li>
         </ul>
       </div>
       <div>
@@ -2426,16 +2560,16 @@
       <div>
         <h4>Connect</h4>
         <ul>
-          <li><a href="#">YouTube</a></li>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="https://www.youtube.com/@MatthewLesko" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/in/lesk0/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/thematthewlesko/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://leskosupport.com/" target="_blank" rel="noopener">Contact us</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Matthew Lesko · 1851 Columbia Rd NW #402, Kensington, MD 20895</span>
-      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contest rules</a></span>
+      <span><a href="https://www.free.lesko.com/privacy-policy" target="_blank" rel="noopener">Privacy</a> · <a href="https://www.free.lesko.com/lesko-help-a1757516761209" target="_blank" rel="noopener">Money-back guarantee</a></span>
     </div>
   </div>
 </footer>
