@@ -1524,19 +1524,19 @@
   }
 
   /* ── Lesko Loves AI embed ───────────────────── */
-  .ai { background: var(--paper); border-top: 1px solid var(--line-soft); }
+  .ai { background: var(--yellow); border-top: 1px solid rgba(14,26,43,0.12); }
   .ai-head { text-align: center; max-width: 780px; margin: 0 auto 38px; }
   .ai-head .section-label { justify-content: center; }
   .ai-head h2 { font-size: clamp(36px, 4.5vw, 56px); line-height: 1.05; margin-bottom: 18px; }
-  .ai-sub { color: var(--ink-mid); font-size: 18px; line-height: 1.65; }
+  .ai-sub { color: var(--ink-soft); font-size: 18px; line-height: 1.65; }
   .ai-frame {
     max-width: 1020px; margin: 0 auto;
-    border-radius: 18px; border: 1px solid var(--line); overflow: hidden;
-    background: #fff; box-shadow: 0 24px 60px rgba(14,26,43,0.12);
+    border-radius: 18px; border: 1px solid rgba(14,26,43,0.28); overflow: hidden;
+    background: #fff; box-shadow: 0 24px 60px rgba(14,26,43,0.22);
   }
   .ai-chrome {
     display: flex; align-items: center; gap: 12px;
-    padding: 11px 16px; background: var(--cream); border-bottom: 1px solid var(--line);
+    padding: 11px 16px; background: var(--paper); border-bottom: 1px solid rgba(14,26,43,0.15);
   }
   .ai-dots { display: inline-flex; gap: 6px; flex: none; }
   .ai-dots i { width: 11px; height: 11px; border-radius: 50%; }
@@ -1560,6 +1560,13 @@
 
 
   /* ── Story-pass additions ───────────────────── */
+  .card-try {
+    display: inline-block; margin-top: 14px;
+    font-weight: 700; font-size: 15px; color: var(--blue);
+    text-decoration: none; border-bottom: 3px solid var(--yellow); padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .card-try:hover { color: var(--red); border-bottom-color: var(--red); }
   .problem-handoff { margin-top: 44px; text-align: center; font-size: 19px; color: var(--ink-soft); }
   .guide-cta { margin-top: 34px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
   .plan-cta, .inside-cta, .stories-cta { margin-top: 56px; display: flex; gap: 22px; align-items: center; justify-content: center; flex-wrap: wrap; text-align: center; }
@@ -1572,7 +1579,7 @@
   .plan-video.scrub-ready .scrub-fallback { opacity: 0; pointer-events: none; }
   .ai-boost {
     max-width: 1020px; margin: 26px auto 0;
-    background: var(--cream); border: 1px solid var(--line); border-radius: 14px;
+    background: var(--paper); border: 1px solid rgba(14,26,43,0.18); border-radius: 14px;
     padding: 22px 26px;
     display: flex; gap: 22px; align-items: center; justify-content: space-between; flex-wrap: wrap;
   }
@@ -1779,7 +1786,7 @@
           <div class="value">12<em>+</em></div>
         </div>
         <div class="hero-illustration">
-          <video id="heroScrub" src="assets/hero-scrub.mp4" muted playsinline preload="auto" aria-label="Comic Matthew Lesko comes alive at his laptop as you scroll"></video>
+          <video id="heroScrub" src="assets/hero-scrub.mp4" muted playsinline preload="metadata" poster="assets/hero-poster.webp" aria-label="Comic Matthew Lesko comes alive at his laptop as you scroll"></video>
         </div>
       </div>
     </div>
@@ -2019,7 +2026,7 @@
     </div>
     <div class="plan-video reveal">
       <img class="scrub-fallback" src="assets/roadmap-final.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
-      <video id="roadmapScrub" src="assets/roadmap-scrub.mp4" muted playsinline preload="auto" aria-label="Messy paperwork folds itself into a clear seven step path"></video>
+      <video id="roadmapScrub" src="assets/roadmap-scrub.mp4" muted playsinline preload="metadata" poster="assets/roadmap-final.webp" aria-label="Messy paperwork folds itself into a clear seven step path"></video>
     </div>
     <div class="plan-steps">
       <div class="plan-step flip reveal" tabindex="0">
@@ -2160,7 +2167,7 @@
   <rect width="640" height="360" rx="8" fill="#fdf0e6"/>
   <g opacity="0.25" font-family="Georgia, serif" font-style="italic" font-weight="700">
     <text x="40" y="80" font-size="55" fill="#e63946">?</text>
-    <text x="570" y="320" font-size="55" fill="#2c3fa0">&#9824;</text>
+    <text x="570" y="320" font-size="55" fill="#2c3fa0">?</text>
   </g>
   <g transform="translate(80, 36)" filter="url(#faresShadow)">
     <rect width="480" height="288" rx="10" fill="#faf6ec"/>
@@ -2177,11 +2184,11 @@
     <g transform="translate(28, 126)">
       <rect width="380" height="126" rx="10" fill="#e6ebf6"/>
       <text x="16" y="26" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#0e1a2b">I found 3 programs worth your time:</text>
-      <text x="16" y="52" font-family="Georgia, serif" font-size="14" fill="#2c3fa0">&#9824;</text>
+      <text x="16" y="52" font-family="Georgia, serif" font-size="14" fill="#2c3fa0">?</text>
       <text x="36" y="52" font-family="DM Sans, sans-serif" font-size="12" fill="#0e1a2b">SBA equipment financing &#183; up to $10K</text>
-      <text x="16" y="76" font-family="Georgia, serif" font-size="14" fill="#e63946">&#9829;</text>
+      <text x="16" y="76" font-family="Georgia, serif" font-size="14" fill="#e63946">?</text>
       <text x="36" y="76" font-family="DM Sans, sans-serif" font-size="12" fill="#0e1a2b">State small business fund &#183; rolling deadline</text>
-      <text x="16" y="100" font-family="Georgia, serif" font-size="14" fill="#fdc830">&#9830;</text>
+      <text x="16" y="100" font-family="Georgia, serif" font-size="14" fill="#fdc830">?</text>
       <text x="36" y="100" font-family="DM Sans, sans-serif" font-size="12" fill="#0e1a2b">Local development grant &#183; quarterly</text>
     </g>
     <text x="28" y="274" font-family="JetBrains Mono, monospace" font-size="10" fill="#586577">Sources included &#183; ready to explore</text>
@@ -2192,6 +2199,7 @@
           <span class="feature-tag red">AI Researcher</span>
           <h3>The Lesko AI researcher</h3>
           <p>Ask it anything about funding your plans. The researcher <strong>digs through thousands of programs</strong> and comes back with the ones worth your time, in plain language.</p>
+          <a class="card-try" href="#ai-tool">Want to try it now? Test the free version &nbsp;→</a>
         </div>
       </div>
 
@@ -2261,6 +2269,25 @@
 </section>
 
 <!-- ──────────── WHY NOW ──────────── -->
+<section class="whynow">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Why now</span>
+      <h2 class="display">The money doesn't wait.<br><em>Neither should you.</em></h2>
+      <p class="wn-sub">Grant programs run on windows and deadlines. The only people who miss out are the ones still "thinking about it" when the window closes.</p>
+    </div>
+    <div class="wn-grid reveal">
+      <div class="wn-card"><span class="suit" style="color:var(--blue)">?</span><span class="wn-kicker">On the table in 2026</span><div class="wn-num">$4.96T</div><p>In U.S. grants &amp; programs &#8212; federal, state, local, and foundation money that <strong>must be given out</strong>.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--red)">?</span><span class="wn-kicker">Closing constantly</span><div class="wn-num">Every week</div><p>Application windows open and close. <strong>Miss one, wait a year.</strong> Members see deadlines before they pass.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--green)">?</span><span class="wn-kicker">Cost to apply</span><div class="wn-num">$0</div><p>Most programs cost <strong>nothing to apply</strong>. The price of a grant isn't money &#8212; it's knowing where to look.</p></div>
+    </div>
+    <div class="wn-close reveal">
+      <div class="line">Funding goes to whoever shows up. <em>This is how you show up.</em><div class="wn-note">5-day trial &#183; renews $19.95/mo &#183; 30-day money-back guarantee</div></div>
+      <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
 <!-- ──────────── LESKO LOVES AI ──────────── -->
 <section class="ai" id="ai-tool">
   <div class="container">
@@ -2283,25 +2310,6 @@
     </div>
     <div class="ai-boost reveal">
       <p><strong>Like what it found?</strong> This is the free version. Members work with the <strong>boosted researcher inside the community</strong> — plus the coaches who help you turn what it finds into submitted applications.</p>
-      <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
-    </div>
-  </div>
-</section>
-
-<section class="whynow">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">Why now</span>
-      <h2 class="display">The money doesn't wait.<br><em>Neither should you.</em></h2>
-      <p class="wn-sub">Grant programs run on windows and deadlines. The only people who miss out are the ones still "thinking about it" when the window closes.</p>
-    </div>
-    <div class="wn-grid reveal">
-      <div class="wn-card"><span class="suit" style="color:var(--blue)">?</span><span class="wn-kicker">On the table in 2026</span><div class="wn-num">$4.96T</div><p>In U.S. grants &amp; programs &#8212; federal, state, local, and foundation money that <strong>must be given out</strong>.</p></div>
-      <div class="wn-card"><span class="suit" style="color:var(--red)">?</span><span class="wn-kicker">Closing constantly</span><div class="wn-num">Every week</div><p>Application windows open and close. <strong>Miss one, wait a year.</strong> Members see deadlines before they pass.</p></div>
-      <div class="wn-card"><span class="suit" style="color:var(--green)">?</span><span class="wn-kicker">Cost to apply</span><div class="wn-num">$0</div><p>Most programs cost <strong>nothing to apply</strong>. The price of a grant isn't money &#8212; it's knowing where to look.</p></div>
-    </div>
-    <div class="wn-close reveal">
-      <div class="line">Funding goes to whoever shows up. <em>This is how you show up.</em><div class="wn-note">5-day trial &#183; renews $19.95/mo &#183; 30-day money-back guarantee</div></div>
       <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
     </div>
   </div>
@@ -2723,9 +2731,27 @@
     video.addEventListener('loadeddata', markReady);
     video.addEventListener('canplay', markReady);
     markReady();
-    document.addEventListener('touchstart', () => {
-      if (video.readyState < 2) { try { video.load(); } catch (e) {} }
-    }, { once: true, passive: true });
+    // Fetch the clip fully into memory and scrub a blob: URL — immune to
+    // preload heuristics and range-request stalls across browsers.
+    let hydrated = false;
+    const hydrate = () => {
+      if (hydrated) return;
+      hydrated = true;
+      fetch(video.getAttribute('src'))
+        .then(r => { if (!r.ok) throw new Error('http ' + r.status); return r.blob(); })
+        .then(blob => {
+          video.src = URL.createObjectURL(blob);
+          video.load();
+        })
+        .catch(() => { try { video.load(); } catch (e) {} });
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        if (entries.some(en => en.isIntersecting)) { hydrate(); io.disconnect(); }
+      }, { rootMargin: '150% 0px' });
+      io.observe(driver);
+    } else { hydrate(); }
+    document.addEventListener('touchstart', hydrate, { once: true, passive: true });
     scrubs.push({ video, driver, mode, time: 0 });
   }
   const clamp01 = v => Math.min(1, Math.max(0, v));
