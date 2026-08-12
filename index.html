@@ -1559,6 +1559,64 @@
   }
 
 
+  /* ── Story-pass additions ───────────────────── */
+  .problem-handoff { margin-top: 44px; text-align: center; font-size: 19px; color: var(--ink-soft); }
+  .guide-cta { margin-top: 34px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .plan-cta, .inside-cta, .stories-cta { margin-top: 56px; display: flex; gap: 22px; align-items: center; justify-content: center; flex-wrap: wrap; text-align: center; }
+  .plan-cta-line { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-style: italic; color: var(--ink-soft); }
+  .plan-cta-line em { color: var(--red); }
+  .stories-cta .plan-cta-line { color: rgba(250,246,236,0.85); }
+  .stories-cta .plan-cta-line em { color: var(--yellow); }
+  .plan-video { position: relative; }
+  .scrub-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; transition: opacity 0.6s ease; }
+  .plan-video.scrub-ready .scrub-fallback { opacity: 0; pointer-events: none; }
+  .ai-boost {
+    max-width: 1020px; margin: 26px auto 0;
+    background: var(--cream); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px;
+    display: flex; gap: 22px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  }
+  .ai-boost p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-soft); flex: 1 1 420px; }
+
+  /* ── YouTube carousel ───────────────────────── */
+  .yt-car { position: relative; max-width: 1080px; margin: 0 auto 6px; }
+  .yt-track {
+    display: flex; gap: 16px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scrollbar-width: none; padding: 4px;
+  }
+  .yt-track::-webkit-scrollbar { display: none; }
+  .yt-slide {
+    flex: 0 0 min(340px, 78vw); scroll-snap-align: start;
+    border-radius: 14px; overflow: hidden; background: #000;
+    border: 2px solid rgba(253,200,48,0.35); cursor: pointer;
+    padding: 0; text-align: left; display: block;
+  }
+  .yt-slide .thumb { position: relative; display: block; aspect-ratio: 16 / 9; background: #000; }
+  .yt-slide .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .yt-slide .thumb iframe { width: 100%; height: 100%; border: 0; display: block; position: absolute; inset: 0; }
+  .yt-slide .pl { position: absolute; inset: 0; display: grid; place-items: center; }
+  .yt-slide .pl span {
+    width: 58px; height: 42px; border-radius: 12px;
+    background: rgba(230,57,70,0.92); color: #fff; font-size: 17px;
+    display: grid; place-items: center; transition: transform 0.15s ease;
+  }
+  .yt-slide:hover .pl span { transform: scale(1.12); }
+  .yt-slide .yt-title {
+    display: block; padding: 12px 14px 14px; min-height: 66px;
+    font-size: 14px; line-height: 1.45; color: var(--paper); background: #101d31;
+  }
+  .yt-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 44px; height: 44px; border-radius: 50%; border: none;
+    background: var(--yellow); color: var(--ink); font-size: 24px; font-weight: 700;
+    cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.35); line-height: 1;
+  }
+  .yt-arrow:hover { background: var(--yellow-warm); }
+  #ytPrev { left: -14px; } #ytNext { right: -14px; }
+  .yt-cta-row { display: flex; gap: 18px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  @media (max-width: 720px) { #ytPrev { left: 2px; } #ytNext { right: 2px; } }
+
+
   footer {
     background: var(--ink);
     color: rgba(250,246,236,0.7);
@@ -1670,7 +1728,7 @@
       <a href="#inside">Inside</a>
       <a href="#stories">Stories</a>
       <a href="#pricing">Membership</a>
-      <a href="#pricing" class="nav-cta">Join LeskoHelp Pro</a>
+      <a href="#pricing" class="nav-cta">Start your $1 trial</a>
     </div>
   </div>
 </nav>
@@ -1689,10 +1747,10 @@
           The funding for it <span class="highlight">already exists.</span>
         </h1>
         <p class="hero-sub">
-          LeskoHelp Pro is the <strong>grant coaching community</strong> for businesses and nonprofits of every size. Members get <strong>personalized AI reports, daily group coaching</strong>, a deep library of resources, and a <strong>clear roadmap</strong> that walks you through the process of actually finding grants.
+          You’ve built something worth funding — a business, a nonprofit, a one-person practice. <strong>The grant money for it is real</strong>, and you don’t have to find it alone. Inside LeskoHelp Pro, <strong>a coach, a community, and Matthew’s AI</strong> find your programs with you — starting today.
         </p>
         <div class="hero-ctas">
-          <a href="#pricing" class="btn-primary">Become a member &nbsp;→</a>
+          <a href="#pricing" class="btn-primary">Start your $1 trial &nbsp;→</a>
           <a href="#how" class="btn-secondary">See how it works</a>
         </div>
         <div class="cta-boost">Your first AI report in under 5 minutes · Cancel anytime</div>
@@ -1811,6 +1869,7 @@
         </li>
       </ol>
     </div>
+    <p class="problem-handoff reveal">The good news: you don’t have to become a grants expert. <strong>You just need one in your corner.</strong></p>
   </div>
 </section>
 
@@ -1838,6 +1897,9 @@
         <p>
           He built LeskoHelp because the people who need grant money the most (solo operators, small teams, mission-driven nonprofits) were the ones least equipped to navigate the systems that hand it out. So he built <strong>the navigation</strong>.
         </p>
+        <p>
+          He’s watched thousands of people stand exactly where you’re standing — certain the money was meant for somebody else. Proving them wrong is his favorite part of the job, and after 50 years <strong>he still can’t wait to do it again. This time, for you.</strong>
+        </p>
         <div class="guide-creds">
           <div>
             <div class="num">100<em>+</em></div>
@@ -1851,6 +1913,10 @@
             <div class="num">$1M<em>+</em></div>
             <div class="text">Given directly to members over the years</div>
           </div>
+        </div>
+        <div class="guide-cta">
+          <a href="#pricing" class="btn-primary">Start your $1 trial &nbsp;→</a>
+          <a href="#how" class="btn-secondary">See how it works</a>
         </div>
       </div>
     </div>
@@ -1940,27 +2006,6 @@
 </div>
 
 <!-- ──────────── PLAN — 3 STEPS ──────────── -->
-<!-- ──────────── YOUTUBE BANNER ──────────── -->
-<section class="yt" id="youtube">
-  <div class="container">
-    <div class="yt-head reveal">
-      <span class="section-label">Every day on YouTube</span>
-      <h2 class="display">
-        New free-money videos, <em>every single day.</em>
-      </h2>
-      <p class="yt-sub">
-        Matthew's channel is a running masterclass in finding money — real programs, real deadlines, real people getting checks. His newest videos land here automatically. Press play.
-      </p>
-    </div>
-    <div class="yt-frame reveal">
-      <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUwKJZfa7sWV_qKxQnLBUpjA" title="Matthew Lesko on YouTube — latest videos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-    </div>
-    <div class="yt-cta-row reveal">
-      <a class="btn-youtube" href="https://www.youtube.com/@MatthewLesko" target="_blank" rel="noopener"><span class="play">▶</span> Subscribe on YouTube</a>
-    </div>
-  </div>
-</section>
-
 <section class="plan" id="how">
   <div class="container">
     <div class="plan-header reveal">
@@ -1973,6 +2018,7 @@
       </p>
     </div>
     <div class="plan-video reveal">
+      <img class="scrub-fallback" src="assets/roadmap-final.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
       <video id="roadmapScrub" src="assets/roadmap-scrub.mp4" muted playsinline preload="auto" aria-label="Messy paperwork folds itself into a clear seven step path"></video>
     </div>
     <div class="plan-steps">
@@ -2056,6 +2102,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="plan-cta reveal">
+      <span class="plan-cta-line">Step one is your personalized report — <em>it’s ready in minutes.</em></span>
+      <a href="#pricing" class="btn-primary">Start your $1 trial &nbsp;→</a>
     </div>
   </div>
 </section>
@@ -2156,6 +2206,10 @@
         </div>
       </div>
     </div>
+    <div class="inside-cta reveal">
+      <span class="plan-cta-line">All of it opens with <em>one dollar.</em></span>
+      <a href="#pricing" class="btn-primary">Start your $1 trial &nbsp;→</a>
+    </div>
   </div>
 </section>
 
@@ -2201,12 +2255,39 @@
     </div>
     <div class="wall-close reveal">
       <div class="line">If you recognized yourself on this wall, <em>this was built for you.</em><div class="wall-note">Join 15,000+ members &#183; $1 five-day trial &#183; 30-day guarantee</div></div>
-      <a class="wall-cta" href="#pricing">Take your seat &#8594;</a>
+      <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
     </div>
   </div>
 </section>
 
 <!-- ──────────── WHY NOW ──────────── -->
+<!-- ──────────── LESKO LOVES AI ──────────── -->
+<section class="ai" id="ai-tool">
+  <div class="container">
+    <div class="ai-head reveal">
+      <span class="section-label">Try it free, right now</span>
+      <h2 class="display">
+        Ask Matthew's AI where <em>your money is.</em>
+      </h2>
+      <p class="ai-sub">
+        <em>“I’ve spent 50 years learning where the money hides. So I packed everything I know into AI tools anyone can use.”</em> This one — <strong>Lesko Loves AI</strong> — is free. Tell it what you’re building, and watch what it finds for you.
+      </p>
+    </div>
+    <div class="ai-frame reveal">
+      <div class="ai-chrome">
+        <span class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="ai-url">leskolovesai.com/business</span>
+        <a class="ai-open" href="https://www.leskolovesai.com/business" target="_blank" rel="noopener">Open full page<span> ↗</span></a>
+      </div>
+      <iframe loading="lazy" src="https://www.leskolovesai.com/business" title="Lesko Loves AI — free grant report tool for businesses"></iframe>
+    </div>
+    <div class="ai-boost reveal">
+      <p><strong>Like what it found?</strong> This is the free version. Members work with the <strong>boosted researcher inside the community</strong> — plus the coaches who help you turn what it finds into submitted applications.</p>
+      <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
 <section class="whynow">
   <div class="container">
     <div class="reveal">
@@ -2215,13 +2296,13 @@
       <p class="wn-sub">Grant programs run on windows and deadlines. The only people who miss out are the ones still "thinking about it" when the window closes.</p>
     </div>
     <div class="wn-grid reveal">
-      <div class="wn-card"><span class="suit" style="color:var(--blue)">&#9824;</span><span class="wn-kicker">On the table in 2026</span><div class="wn-num">$4.96T</div><p>In U.S. grants &amp; programs &#8212; federal, state, local, and foundation money that <strong>must be given out</strong>.</p></div>
-      <div class="wn-card"><span class="suit" style="color:var(--red)">&#9829;</span><span class="wn-kicker">Closing constantly</span><div class="wn-num">Every week</div><p>Application windows open and close. <strong>Miss one, wait a year.</strong> Members see deadlines before they pass.</p></div>
-      <div class="wn-card"><span class="suit" style="color:var(--green)">&#9827;</span><span class="wn-kicker">Cost to apply</span><div class="wn-num">$0</div><p>Most programs cost <strong>nothing to apply</strong>. The price of a grant isn't money &#8212; it's knowing where to look.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--blue)">?</span><span class="wn-kicker">On the table in 2026</span><div class="wn-num">$4.96T</div><p>In U.S. grants &amp; programs &#8212; federal, state, local, and foundation money that <strong>must be given out</strong>.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--red)">?</span><span class="wn-kicker">Closing constantly</span><div class="wn-num">Every week</div><p>Application windows open and close. <strong>Miss one, wait a year.</strong> Members see deadlines before they pass.</p></div>
+      <div class="wn-card"><span class="suit" style="color:var(--green)">?</span><span class="wn-kicker">Cost to apply</span><div class="wn-num">$0</div><p>Most programs cost <strong>nothing to apply</strong>. The price of a grant isn't money &#8212; it's knowing where to look.</p></div>
     </div>
     <div class="wn-close reveal">
       <div class="line">Funding goes to whoever shows up. <em>This is how you show up.</em><div class="wn-note">5-day trial &#183; renews $19.95/mo &#183; 30-day money-back guarantee</div></div>
-      <a class="wn-cta" href="https://www.leskohelp.com/business-trial" target="_blank" rel="noopener">Start your $1 trial &#8594;</a>
+      <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
     </div>
   </div>
 </section>
@@ -2365,33 +2446,14 @@
   </div>
 </div>
 
+    <div class="stories-cta reveal">
+      <span class="plan-cta-line">Every one of these stories started with <em>the same $1.</em></span>
+      <a href="#pricing" class="btn-primary">Start your $1 trial &nbsp;→</a>
+    </div>
   </div>
 </section>
 
 <!-- ──────────── PRICING ──────────── -->
-<!-- ──────────── LESKO LOVES AI ──────────── -->
-<section class="ai" id="ai-tool">
-  <div class="container">
-    <div class="ai-head reveal">
-      <span class="section-label">Try it free, right now</span>
-      <h2 class="display">
-        Ask Matthew's AI where <em>your money is.</em>
-      </h2>
-      <p class="ai-sub">
-        This is <strong>Lesko Loves AI</strong> — the team's grant-research AI, trained to build funding reports for businesses. Use it right here. Inside the community, members turn reports like this into submitted applications with coaches at their side.
-      </p>
-    </div>
-    <div class="ai-frame reveal">
-      <div class="ai-chrome">
-        <span class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="ai-url">leskolovesai.com/business</span>
-        <a class="ai-open" href="https://www.leskolovesai.com/business" target="_blank" rel="noopener">Open full page<span> ↗</span></a>
-      </div>
-      <iframe loading="lazy" src="https://www.leskolovesai.com/business" title="Lesko Loves AI — free grant report tool for businesses"></iframe>
-    </div>
-  </div>
-</section>
-
 <section class="pricing" id="pricing">
   <div class="container">
     <div class="pricing-header reveal">
@@ -2513,6 +2575,69 @@
 </section>
 
 <!-- ──────────── FINAL CTA ──────────── -->
+<!-- ──────────── YOUTUBE BANNER ──────────── -->
+<section class="yt" id="youtube">
+  <div class="container">
+    <div class="yt-head reveal">
+      <span class="section-label">Before you go</span>
+      <h2 class="display">
+        Meet the man who’ll be <em>in your corner.</em>
+      </h2>
+      <p class="yt-sub">
+        Matthew posts free money advice on YouTube every single day — and has for years. These are his latest videos, pulled straight from the channel. This is the energy waiting for you inside.
+      </p>
+    </div>
+    <div class="yt-frame reveal" id="ytSingle">
+      <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/videoseries?list=UUwKJZfa7sWV_qKxQnLBUpjA" title="Matthew Lesko on YouTube — latest videos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <div class="yt-car reveal" id="ytCar" hidden>
+      <button class="yt-arrow" id="ytPrev" type="button" aria-label="Previous videos">‹</button>
+      <div class="yt-track" id="ytTrack"></div>
+      <button class="yt-arrow" id="ytNext" type="button" aria-label="Next videos">›</button>
+    </div>
+    <div class="yt-cta-row reveal">
+      <a class="btn-youtube" href="https://www.youtube.com/@MatthewLesko" target="_blank" rel="noopener"><span class="play">▶</span> Subscribe on YouTube</a>
+      <a class="btn-primary" href="#pricing">Start your $1 trial &nbsp;→</a>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var car = document.getElementById('ytCar'), track = document.getElementById('ytTrack'),
+      single = document.getElementById('ytSingle');
+  if (!car || !track || !single) return;
+  fetch('/api/videos').then(function (r) { return r.ok ? r.json() : { videos: [] }; }).then(function (d) {
+    var vids = (d && d.videos) || [];
+    if (vids.length < 3) return;
+    track.innerHTML = vids.map(function (v) {
+      var t = String(v.title).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      return '<button class="yt-slide" type="button" data-id="' + v.id + '">' +
+        '<span class="thumb"><img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy" decoding="async">' +
+        '<span class="pl"><span>▶</span></span></span>' +
+        '<span class="yt-title">' + t + '</span></button>';
+    }).join('');
+    single.hidden = true;
+    car.hidden = false;
+    track.querySelectorAll('.yt-slide').forEach(function (sl) {
+      sl.addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + sl.dataset.id + '?autoplay=1';
+        f.title = 'YouTube video';
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+        f.allowFullscreen = true;
+        sl.querySelector('.thumb').replaceChildren(f);
+      }, { once: true });
+    });
+    function step(dir) {
+      var w = track.firstElementChild ? track.firstElementChild.offsetWidth + 16 : 360;
+      track.scrollBy({ left: dir * w, behavior: 'smooth' });
+    }
+    document.getElementById('ytPrev').addEventListener('click', function () { step(-1); });
+    document.getElementById('ytNext').addEventListener('click', function () { step(1); });
+  }).catch(function () {});
+})();
+</script>
+
 <section class="final-cta">
   <div class="container final-cta-inner reveal">
     <h2 class="display">
@@ -2520,7 +2645,7 @@
       <em>Start winning them.</em>
     </h2>
     <p>Join 15,000+ grant entrepreneurs inside LeskoHelp Pro. <strong>Your first AI report is ready as soon as you sign up.</strong></p>
-    <a href="#pricing" class="btn-primary">Become a member &nbsp;→</a>
+    <a href="https://www.leskohelp.com/business-trial" target="_blank" rel="noopener" class="btn-primary">Start your $1 trial &nbsp;→</a>
     <p class="small">5 days for $1 · Renews at $19.95/mo · Cancel anytime · Money-back guarantee</p>
     <div class="cta-video">
       <video src="assets/welcome-loop.mp4" muted autoplay loop playsinline aria-label="Comic Matthew welcomes you with open arms"></video>
@@ -2592,6 +2717,15 @@
     const driver = document.querySelector(driverSel);
     if (!video || !driver) return;
     video.pause();
+    const markReady = () => {
+      if (video.duration && video.readyState >= 2) driver.classList.add('scrub-ready');
+    };
+    video.addEventListener('loadeddata', markReady);
+    video.addEventListener('canplay', markReady);
+    markReady();
+    document.addEventListener('touchstart', () => {
+      if (video.readyState < 2) { try { video.load(); } catch (e) {} }
+    }, { once: true, passive: true });
     scrubs.push({ video, driver, mode, time: 0 });
   }
   const clamp01 = v => Math.min(1, Math.max(0, v));
