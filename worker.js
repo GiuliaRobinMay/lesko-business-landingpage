@@ -1,10 +1,13 @@
 // LeskoHelp Pro — tiny API worker.
 // Static assets are served before this worker runs; only unmatched
-// routes (like /api/videos) land here.
+// routes (like /api/videos, /ai-embed, /llproxy/*) land here.
 
 const CHANNEL_ID = 'UCwKJZfa7sWV_qKxQnLBUpjA'; // @MatthewLesko
 const FEED_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
 const MAX_VIDEOS = 12;
+
+const LL_ORIGIN = 'https://www.leskolovesai.com';
+const LL_PAGE = LL_ORIGIN + '/business';
 
 function decodeEntities(s) {
   return s
@@ -35,6 +38,84 @@ async function latestVideos() {
   return videos;
 }
 
+// Injected into the proxied Lesko Loves AI page. Routes the app's own
+// root-relative API calls through /llproxy and removes the membership
+// popup — matched strictly by its own text, so nothing else is touched.
+const EMBED_INJECT = `<base href="${LL_ORIGIN}/"><script>(function () {
+  var P = '/llproxy';
+  var origFetch = window.fetch;
+  window.fetch = function (input, init) {
+    try {
+      if (typeof input === 'string' && input.charAt(0) === '/' && input.charAt(1) !== '/') {
+        input = P + input;
+      } else if (input instanceof Request) {
+        var u = new URL(input.url);
+        if (u.origin === location.origin && u.pathname.indexOf(P) !== 0) {
+          input = new Request(P + u.pathname + u.search, input);
+        }
+      }
+    } catch (e) {}
+    return origFetch.call(this, input, init);
+  };
+  var origOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function (m, u) {
+    try {
+      if (typeof u === 'string' && u.charAt(0) === '/' && u.charAt(1) !== '/' && u.indexOf(P) !== 0) {
+        arguments[1] = P + u;
+      }
+    } catch (e) {}
+    return origOpen.apply(this, arguments);
+  };
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register = function () { return new Promise(function () {}); };
+  }
+
+  var MARKERS = ['Not a Member Yet', 'The Love You Get When You Become a Member'];
+  function overlayFor(el) {
+    var node = el, overlay = null, hops = 0;
+    while (node && node !== document.body && hops < 14) {
+      var cs = getComputedStyle(node);
+      if (cs.position === 'fixed') overlay = node;
+      node = node.parentElement; hops++;
+    }
+    return overlay;
+  }
+  function nuke() {
+    if (!document.body) return;
+    var els = document.body.querySelectorAll('div,section,dialog,aside');
+    for (var i = 0; i < els.length; i++) {
+      var t = els[i].textContent || '';
+      for (var k = 0; k < MARKERS.length; k++) {
+        if (t.indexOf(MARKERS[k]) !== -1) {
+          var overlay = overlayFor(els[i]);
+          if (overlay) {
+            overlay.remove();
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+            return;
+          }
+        }
+      }
+    }
+  }
+  var pending = false;
+  function schedule() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () { pending = false; nuke(); });
+  }
+  new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener('DOMContentLoaded', schedule);
+  var tries = 0;
+  var iv = setInterval(function () { schedule(); if (++tries > 25) clearInterval(iv); }, 800);
+})();</script>`;
+
+function stripHopHeaders(headers) {
+  const h = new Headers(headers);
+  ['host', 'cookie', 'cf-connecting-ip', 'cf-ray', 'cf-visitor', 'cf-ipcountry', 'x-forwarded-for', 'x-forwarded-proto', 'x-real-ip'].forEach(k => h.delete(k));
+  return h;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -62,6 +143,74 @@ export default {
       });
       if (status === 200) ctx.waitUntil(cache.put(cacheKey, res.clone()));
       return res;
+    }
+
+    // Same-origin wrapper around the Lesko Loves AI page so we can strip
+    // its membership popup. Any hiccup falls back to the real page.
+    if (url.pathname === '/ai-embed') {
+      let upstream;
+      try {
+        upstream = await fetch(LL_PAGE, {
+          headers: {
+            'user-agent': request.headers.get('user-agent') || 'Mozilla/5.0',
+            'accept': 'text/html,application/xhtml+xml',
+            'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.9'
+          }
+        });
+      } catch (e) {
+        return Response.redirect(LL_PAGE, 302);
+      }
+      const ct = upstream.headers.get('content-type') || '';
+      if (!upstream.ok || !ct.includes('text/html')) return Response.redirect(LL_PAGE, 302);
+      let html = await upstream.text();
+      if (!/<head[^>]*>/i.test(html)) return Response.redirect(LL_PAGE, 302);
+      html = html.replace(/<head([^>]*)>/i, match => match + EMBED_INJECT);
+      return new Response(html, {
+        status: 200,
+        headers: {
+          'content-type': 'text/html; charset=utf-8',
+          'cache-control': 'no-store',
+          'x-robots-tag': 'noindex'
+        }
+      });
+    }
+
+    // Forward the embedded app's own API/data calls to its origin.
+    if (url.pathname.startsWith('/llproxy/')) {
+      const target = LL_ORIGIN + url.pathname.slice('/llproxy'.length) + url.search;
+      const init = {
+        method: request.method,
+        headers: stripHopHeaders(request.headers),
+        body: (request.method === 'GET' || request.method === 'HEAD') ? undefined : await request.arrayBuffer()
+      };
+      init.headers.set('origin', LL_ORIGIN);
+      init.headers.set('referer', LL_PAGE);
+      let res;
+      try {
+        res = await fetch(target, init);
+      } catch (e) {
+        return new Response('proxy error', { status: 502 });
+      }
+      const h = new Headers(res.headers);
+      h.delete('set-cookie');
+      h.set('cache-control', 'no-store');
+      return new Response(res.body, { status: res.status, headers: h });
+    }
+
+    // Root-relative subresources requested by the embedded page (images,
+    // fonts referenced from inline styles, etc.) — recognizable by referer.
+    const referer = request.headers.get('referer') || '';
+    if (referer.includes('/ai-embed') || referer.includes('/llproxy/')) {
+      try {
+        const res = await fetch(LL_ORIGIN + url.pathname + url.search, {
+          headers: { 'user-agent': request.headers.get('user-agent') || 'Mozilla/5.0', 'referer': LL_PAGE }
+        });
+        const h = new Headers(res.headers);
+        h.delete('set-cookie');
+        return new Response(res.body, { status: res.status, headers: h });
+      } catch (e) {
+        return new Response('Not found', { status: 404 });
+      }
     }
 
     return new Response('Not found', { status: 404 });
