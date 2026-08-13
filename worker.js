@@ -42,6 +42,9 @@ async function latestVideos() {
 // root-relative API calls through /llproxy and removes the membership
 // popup — matched strictly by its own text, so nothing else is touched.
 const EMBED_INJECT = `<base href="${LL_ORIGIN}/"><script>(function () {
+  // The app is a client-side-routed SPA: make sure it sees the path it
+  // expects, no matter which local path served this wrapper.
+  try { history.replaceState(null, '', '/business'); } catch (e) {}
   var P = '/llproxy';
   var origFetch = window.fetch;
   window.fetch = function (input, init) {
@@ -147,7 +150,7 @@ export default {
 
     // Same-origin wrapper around the Lesko Loves AI page so we can strip
     // its membership popup. Any hiccup falls back to the real page.
-    if (url.pathname === '/ai-embed') {
+    if (url.pathname === '/ai-embed' || url.pathname === '/business') {
       let upstream;
       try {
         upstream = await fetch(LL_PAGE, {
@@ -200,7 +203,7 @@ export default {
     // Root-relative subresources requested by the embedded page (images,
     // fonts referenced from inline styles, etc.) — recognizable by referer.
     const referer = request.headers.get('referer') || '';
-    if (referer.includes('/ai-embed') || referer.includes('/llproxy/')) {
+    if (referer.includes('/ai-embed') || referer.includes('/business') || referer.includes('/llproxy/')) {
       try {
         const res = await fetch(LL_ORIGIN + url.pathname + url.search, {
           headers: { 'user-agent': request.headers.get('user-agent') || 'Mozilla/5.0', 'referer': LL_PAGE }
